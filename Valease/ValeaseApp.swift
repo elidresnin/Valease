@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -23,9 +25,12 @@ struct ValeaseApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @StateObject var user: User = User()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(user)
         }
     }
 }
