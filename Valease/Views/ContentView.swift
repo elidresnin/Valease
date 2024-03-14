@@ -7,16 +7,50 @@
 
 import SwiftUI
 
+enum ViewState{
+    case home, account
+}
+
 struct ContentView: View {
     @EnvironmentObject var user: User
+    @State var viewState: ViewState = .home
     
     var body: some View {
         VStack {
             if user.loggedIn{
-                AccountView()
+                if viewState == .home{
+                    HomeView()
+                } else {
+                    AccountView()
+                }
+                HStack{
+                    Button {
+                        viewState = .home
+                    } label: {
+                        VStack{
+                            Image(systemName: "house")
+                                .font(.largeTitle)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        viewState = .account
+                    } label: {
+                        VStack{
+                            Image(systemName: "person")
+                                .font(.largeTitle)
+                        }
+                    }
+                }
+                .padding([.leading, .trailing], 40)
+                .padding([.top], 35)
+                .padding([.bottom], -25)
             } else{
                 SignupView()
             }
+            
         }
         .padding()
     }
