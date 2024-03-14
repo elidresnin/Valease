@@ -12,10 +12,11 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Goodbye, world!")
+            if user.loggedIn{
+                AccountView()
+            } else{
+                SignupView()
+            }
         }
         .padding()
     }

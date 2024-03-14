@@ -65,7 +65,7 @@ struct AccountView: View {
                 Text("Sign out")
                     .font(Constants.mediumFont)
                     .foregroundColor(Color.textColor)
-                    .padding(.horizontal, 112)
+                    .padding(.horizontal, 120)
                     .padding(.vertical, 10)
                     .background(Color.valeaseTeal)
                     .cornerRadius(20)
