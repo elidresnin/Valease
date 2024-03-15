@@ -9,7 +9,42 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                NavigationLink{
+                    PackingView()
+                } label: {
+                    VStack{
+                        Text("Packing List")
+                            .font(Constants.largeFont)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.valeaseOrange)
+                        Image("packing")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200)
+                    }
+                }
+                
+                Spacer()
+                
+                NavigationLink{
+                    ItineraryView()
+                } label: {
+                    VStack{
+                        Text("Itinerary")
+                            .font(Constants.largeFont)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.valeaseOrange)
+                        Image("plan")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200)
+                    }
+                }
+            }
+        }
+        .padding()
     }
 }
 

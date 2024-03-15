@@ -14,6 +14,8 @@
 		A22C8D272BA20D3C00A00FB6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */; };
 		A22C8D292BA368F700A00FB6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D282BA368F700A00FB6 /* HomeView.swift */; };
 		A231F4E72B9F7DCD0090D8DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A231F4E62B9F7DCD0090D8DB /* Constants.swift */; };
+		A23C0BD32BA4C86C002A8448 /* PackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C0BD22BA4C86C002A8448 /* PackingView.swift */; };
+		A23C0BD52BA4C875002A8448 /* ItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C0BD42BA4C875002A8448 /* ItineraryView.swift */; };
 		D0B9723D2B9B8127004BC83A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */; };
 		D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA042F2B9B7B27007151B3 /* ValeaseApp.swift */; };
 		D0DA04322B9B7B27007151B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA04312B9B7B27007151B3 /* ContentView.swift */; };
@@ -29,6 +31,8 @@
 		A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A22C8D282BA368F700A00FB6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A231F4E62B9F7DCD0090D8DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A23C0BD22BA4C86C002A8448 /* PackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingView.swift; sourceTree = "<group>"; };
+		A23C0BD42BA4C875002A8448 /* ItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryView.swift; sourceTree = "<group>"; };
 		A82FD003627860213F8A3ADF /* Pods-Valease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valease.release.xcconfig"; path = "Target Support Files/Pods-Valease/Pods-Valease.release.xcconfig"; sourceTree = "<group>"; };
 		D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0DA042C2B9B7B27007151B3 /* Valease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valease.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +71,8 @@
 				A22C8D242BA20D1500A00FB6 /* AccountView.swift */,
 				A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */,
 				A22C8D282BA368F700A00FB6 /* HomeView.swift */,
+				A23C0BD22BA4C86C002A8448 /* PackingView.swift */,
+				A23C0BD42BA4C875002A8448 /* ItineraryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +256,8 @@
 				D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */,
 				A22C8D292BA368F700A00FB6 /* HomeView.swift in Sources */,
 				A231F4E72B9F7DCD0090D8DB /* Constants.swift in Sources */,
+				A23C0BD32BA4C86C002A8448 /* PackingView.swift in Sources */,
+				A23C0BD52BA4C875002A8448 /* ItineraryView.swift in Sources */,
 				A22C8D232BA20B6C00A00FB6 /* SignupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
