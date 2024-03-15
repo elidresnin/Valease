@@ -19,7 +19,7 @@ extension Color{
 struct Constants{
     static let largeFont: Font = Font(UIFont.systemFont(ofSize: 50))
     
-    static let mediumFont: Font = Font(UIFont.systemFont(ofSize: 30))
+    static let mediumFont: Font = Font(UIFont.systemFont(ofSize: 25))
     
     static let smallFont: Font = Font(UIFont.systemFont(ofSize: 15))
 }

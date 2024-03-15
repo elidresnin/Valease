@@ -38,15 +38,17 @@ struct AccountView: View {
                 .font(Constants.mediumFont)
                 .border(Color.valeaseOrange, width: 4)
                 .padding()
-                .onSubmit {
-                    guard let uid = Auth.auth().currentUser?.uid else {return}
-                             
-                    Database.database().reference().child("users/\(uid)/nameData").setValue(user.name)
-                }
+//                .onSubmit {
+//                    guard let uid = Auth.auth().currentUser?.uid else {return}
+//
+//                    Database.database().reference().child("users/\(uid)/nameData").setValue(user.name)
+//                }
             Spacer()
             
             Button {
-                
+                guard let uid = Auth.auth().currentUser?.uid else {return}
+                         
+                Database.database().reference().child("users/\(uid)/nameData").setValue(user.name)
             } label: {
                 Text("Update Account")
                     .font(Constants.mediumFont)
@@ -65,7 +67,7 @@ struct AccountView: View {
                 Text("Sign out")
                     .font(Constants.mediumFont)
                     .foregroundColor(Color.textColor)
-                    .padding(.horizontal, 120)
+                    .padding(.horizontal, 105)
                     .padding(.vertical, 10)
                     .background(Color.valeaseTeal)
                     .cornerRadius(20)
