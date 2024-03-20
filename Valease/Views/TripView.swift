@@ -15,6 +15,7 @@ struct TripView: View {
             VStack{
                 NavigationLink(destination: {
                     PackingView()
+                        .navigationBarBackButtonHidden(true)
                 }, label: {
                     VStack{
                         HStack {
@@ -35,6 +36,7 @@ struct TripView: View {
                 
                 NavigationLink{
                     ItineraryView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     VStack{
                         HStack {
