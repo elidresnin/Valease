@@ -14,10 +14,13 @@
 		A22C8D232BA20B6C00A00FB6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D222BA20B6C00A00FB6 /* SignupView.swift */; };
 		A22C8D252BA20D1500A00FB6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D242BA20D1500A00FB6 /* AccountView.swift */; };
 		A22C8D272BA20D3C00A00FB6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */; };
-		A22C8D292BA368F700A00FB6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D282BA368F700A00FB6 /* HomeView.swift */; };
+		A22C8D292BA368F700A00FB6 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D282BA368F700A00FB6 /* TripView.swift */; };
 		A231F4E72B9F7DCD0090D8DB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A231F4E62B9F7DCD0090D8DB /* Constants.swift */; };
 		A23C0BD32BA4C86C002A8448 /* PackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C0BD22BA4C86C002A8448 /* PackingView.swift */; };
 		A23C0BD52BA4C875002A8448 /* ItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23C0BD42BA4C875002A8448 /* ItineraryView.swift */; };
+		A269F4992BA9EC6300E104EA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269F4982BA9EC6300E104EA /* HomeView.swift */; };
+		A269F49B2BA9EF7400E104EA /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269F49A2BA9EF7400E104EA /* Trip.swift */; };
+		A269F49D2BA9F00000E104EA /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269F49C2BA9F00000E104EA /* Trips.swift */; };
 		D0B9723D2B9B8127004BC83A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */; };
 		D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA042F2B9B7B27007151B3 /* ValeaseApp.swift */; };
 		D0DA04322B9B7B27007151B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DA04312B9B7B27007151B3 /* ContentView.swift */; };
@@ -33,10 +36,13 @@
 		A22C8D222BA20B6C00A00FB6 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		A22C8D242BA20D1500A00FB6 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		A22C8D282BA368F700A00FB6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A22C8D282BA368F700A00FB6 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		A231F4E62B9F7DCD0090D8DB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A23C0BD22BA4C86C002A8448 /* PackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackingView.swift; sourceTree = "<group>"; };
 		A23C0BD42BA4C875002A8448 /* ItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryView.swift; sourceTree = "<group>"; };
+		A269F4982BA9EC6300E104EA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A269F49A2BA9EF7400E104EA /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		A269F49C2BA9F00000E104EA /* Trips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
 		A82FD003627860213F8A3ADF /* Pods-Valease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valease.release.xcconfig"; path = "Target Support Files/Pods-Valease/Pods-Valease.release.xcconfig"; sourceTree = "<group>"; };
 		D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0DA042C2B9B7B27007151B3 /* Valease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valease.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,10 +80,11 @@
 				A22C8D222BA20B6C00A00FB6 /* SignupView.swift */,
 				A22C8D242BA20D1500A00FB6 /* AccountView.swift */,
 				A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */,
-				A22C8D282BA368F700A00FB6 /* HomeView.swift */,
+				A22C8D282BA368F700A00FB6 /* TripView.swift */,
 				A23C0BD22BA4C86C002A8448 /* PackingView.swift */,
 				5FD77D332BA9F51D0020C2C7 /* ItemView.swift */,
 				A23C0BD42BA4C875002A8448 /* ItineraryView.swift */,
+				A269F4982BA9EC6300E104EA /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -88,6 +95,8 @@
 				A231F4E62B9F7DCD0090D8DB /* Constants.swift */,
 				5FD77D352BAA10520020C2C7 /* Item.swift */,
 				A22C8D202BA20A2700A00FB6 /* User.swift */,
+				A269F49A2BA9EF7400E104EA /* Trip.swift */,
+				A269F49C2BA9F00000E104EA /* Trips.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,14 +264,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A269F49B2BA9EF7400E104EA /* Trip.swift in Sources */,
 				A22C8D252BA20D1500A00FB6 /* AccountView.swift in Sources */,
+				A269F49D2BA9F00000E104EA /* Trips.swift in Sources */,
 				A22C8D212BA20A2700A00FB6 /* User.swift in Sources */,
 				D0DA04322B9B7B27007151B3 /* ContentView.swift in Sources */,
 				A22C8D272BA20D3C00A00FB6 /* ImagePicker.swift in Sources */,
 				5FD77D362BAA10520020C2C7 /* Item.swift in Sources */,
 				D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */,
+
 				5FD77D342BA9F51D0020C2C7 /* ItemView.swift in Sources */,
-				A22C8D292BA368F700A00FB6 /* HomeView.swift in Sources */,
+
+				A269F4992BA9EC6300E104EA /* HomeView.swift in Sources */,
+				A22C8D292BA368F700A00FB6 /* TripView.swift in Sources */,
+
 				A231F4E72B9F7DCD0090D8DB /* Constants.swift in Sources */,
 				A23C0BD32BA4C86C002A8448 /* PackingView.swift in Sources */,
 				A23C0BD52BA4C875002A8448 /* ItineraryView.swift in Sources */,

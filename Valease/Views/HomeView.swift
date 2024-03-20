@@ -2,54 +2,64 @@
 //  HomeView.swift
 //  Valease
 //
-//  Created by Penelope Cohen (student LM) on 3/14/24.
+//  Created by Penelope Cohen (student LM) on 3/19/24.
 //
 
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var user: User
+    @EnvironmentObject var allTrips: Trips
+    
     var body: some View {
-        NavigationView{
+        
+        NavigationView {
             VStack{
-                NavigationLink{
-                    PackingView()
-                } label: {
-                    VStack{
-                        Text("Packing List")
-                            .font(Constants.largeFont)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.valeaseOrange)
-                        Image("packing")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 200)
+                Image(systemName: "mappin.and.ellipse")
+                    .font(.system(size: 200))
+                    .foregroundColor(Color.valeaseGreen)
+                Text("My trips")
+                    .fontWeight(.bold)
+                    .font(.title)
+                
+                Spacer()
+                
+                List(allTrips.tripList) { trip in
+                    NavigationLink{
+                        TripView(trip: trip)
+                    } label: {
+                        Text(trip.name)
                     }
                 }
                 
                 Spacer()
                 
-                NavigationLink{
-                    ItineraryView()
+                Button {
+                    
                 } label: {
-                    VStack{
-                        Text("Itinerary")
-                            .font(Constants.largeFont)
+                    HStack{
+                        Image(systemName: "plus.circle")
+                            .foregroundColor(.valeaseTeal)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.valeaseOrange)
-                        Image("plan")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 200)
+                            .font(.system(size: 30))
+                        Text("Add Trip")
+                            .font(.system(size: 20))
+                            .foregroundColor(.valeaseTeal)
+                            .fontWeight(.bold)
                     }
                 }
+
             }
+            
         }
-        .padding()
+        
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(User())
+            .environmentObject(Trips())
     }
 }
