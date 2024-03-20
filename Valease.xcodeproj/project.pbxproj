@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		51C1FF0D536B1F030DE0F117 /* Pods_Valease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D65E9615CAC9FD8C04485C /* Pods_Valease.framework */; };
+		5FD77D342BA9F51D0020C2C7 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD77D332BA9F51D0020C2C7 /* ItemView.swift */; };
+		5FD77D362BAA10520020C2C7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD77D352BAA10520020C2C7 /* Item.swift */; };
 		A22C8D212BA20A2700A00FB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D202BA20A2700A00FB6 /* User.swift */; };
 		A22C8D232BA20B6C00A00FB6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D222BA20B6C00A00FB6 /* SignupView.swift */; };
 		A22C8D252BA20D1500A00FB6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D242BA20D1500A00FB6 /* AccountView.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5FD77D332BA9F51D0020C2C7 /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
+		5FD77D352BAA10520020C2C7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		72D65E9615CAC9FD8C04485C /* Pods_Valease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Valease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A22C8D202BA20A2700A00FB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A22C8D222BA20B6C00A00FB6 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 				A22C8D262BA20D3C00A00FB6 /* ImagePicker.swift */,
 				A22C8D282BA368F700A00FB6 /* HomeView.swift */,
 				A23C0BD22BA4C86C002A8448 /* PackingView.swift */,
+				5FD77D332BA9F51D0020C2C7 /* ItemView.swift */,
 				A23C0BD42BA4C875002A8448 /* ItineraryView.swift */,
 			);
 			path = Views;
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				A231F4E62B9F7DCD0090D8DB /* Constants.swift */,
+				5FD77D352BAA10520020C2C7 /* Item.swift */,
 				A22C8D202BA20A2700A00FB6 /* User.swift */,
 			);
 			path = Model;
@@ -253,7 +259,9 @@
 				A22C8D212BA20A2700A00FB6 /* User.swift in Sources */,
 				D0DA04322B9B7B27007151B3 /* ContentView.swift in Sources */,
 				A22C8D272BA20D3C00A00FB6 /* ImagePicker.swift in Sources */,
+				5FD77D362BAA10520020C2C7 /* Item.swift in Sources */,
 				D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */,
+				5FD77D342BA9F51D0020C2C7 /* ItemView.swift in Sources */,
 				A22C8D292BA368F700A00FB6 /* HomeView.swift in Sources */,
 				A231F4E72B9F7DCD0090D8DB /* Constants.swift in Sources */,
 				A23C0BD32BA4C86C002A8448 /* PackingView.swift in Sources */,
@@ -385,10 +393,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Valease/Preview Content\"";
-				DEVELOPMENT_TEAM = 66M64NYV4W;
+				DEVELOPMENT_TEAM = 75S3FJQVUH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -403,6 +412,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = eli.Valease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -415,10 +425,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Valease/Preview Content\"";
-				DEVELOPMENT_TEAM = 66M64NYV4W;
+				DEVELOPMENT_TEAM = 75S3FJQVUH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -433,6 +444,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = eli.Valease;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
