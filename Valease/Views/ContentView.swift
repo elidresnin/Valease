@@ -30,6 +30,32 @@ struct ContentView: View {
                         VStack{
                             Image(systemName: "house")
                                 .font(.largeTitle)
+                                .foregroundColor(Color.valeaseGreen)
+                            
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        VStack{
+                            Image(systemName: "map")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.valeaseGreen)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                       
+                    } label: {
+                        VStack{
+                            Image(systemName: "airplane")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.valeaseGreen)
                         }
                     }
                     
@@ -41,6 +67,7 @@ struct ContentView: View {
                         VStack{
                             Image(systemName: "person")
                                 .font(.largeTitle)
+                                .foregroundColor(Color.valeaseGreen)
                         }
                     }
                 }
@@ -60,5 +87,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(User())
+            .environmentObject(Trips())
     }
 }

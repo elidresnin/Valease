@@ -26,11 +26,13 @@ struct ValeaseApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @StateObject var user: User = User()
+    @StateObject var trips: Trips = Trips()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(user)
+                .environmentObject(trips)
         }
     }
 }
