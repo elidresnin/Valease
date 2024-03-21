@@ -11,8 +11,6 @@ struct ItemView: View {
     
     @ObservedObject var item: Item
     var addItem: (Item) -> Void
-    let alerts = ["None", "1 hr before trip", "2 hr before trip", "12 hr before trip", "1 day before trip"]
-    @State private var selectedReminder = 0
     
     var body: some View {
         VStack {
@@ -35,11 +33,11 @@ struct ItemView: View {
                     Text("Alert")
                         .padding(20)
                     Spacer()
-                    Picker("Alert", selection: $selectedReminder, content: {
-                        ForEach(0..<alerts.count) { index in
-                            Text(alerts[index])
+                    Picker("Alert", selection: $item.selectedReminderIndex) {
+                        ForEach(0..<Item.alerts.count) { index in
+                            Text(Item.alerts[index])
                         }
-                    })
+                    }
                     .pickerStyle(MenuPickerStyle())
                     .padding(20)
                 }
