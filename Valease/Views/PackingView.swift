@@ -44,7 +44,9 @@ struct PackingView: View {
                 }
                 List {
                     ForEach(items) { item in
-                        Text(item.name)
+                        NavigationLink(destination: ItemDetailView(item: item)) {
+                            Text(item.name)
+                        }
                     }
                     .onDelete(perform: deleteItem)
                     .onMove(perform: moveItem)

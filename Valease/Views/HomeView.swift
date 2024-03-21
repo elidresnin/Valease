@@ -10,6 +10,16 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var user: User
     @EnvironmentObject var allTrips: Trips
+    @State var showSheet = false
+    
+    func addTrip(trip: Trip) {
+        allTrips.tripList.append(trip)
+        showSheet.toggle()
+    }
+    
+    func deleteTrip(at offsets: IndexSet) {
+        allTrips.tripList.remove(atOffsets: offsets)
+    }
     
     var body: some View {
         
@@ -24,42 +34,52 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                List(allTrips.tripList) { trip in
-                    NavigationLink{
-                        TripView(trip: trip)
-                    } label: {
-                        Text(trip.name)
+                List {
+                    ForEach(allTrips.tripList) { trip in
+                        NavigationLink(destination: TripView(trip: trip)) {
+                            Text(trip.name)
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .border(Color.valeaseTeal, width: 4)
+                        }
                     }
-                }
+                    .onDelete(perform: deleteTrip)
+                }.listStyle(PlainListStyle())
+                
                 
                 Spacer()
                 
                 Button {
-                    
+                    showSheet.toggle()
                 } label: {
                     HStack{
                         Image(systemName: "plus.circle")
-                            .foregroundColor(.valeaseTeal)
+                            .foregroundColor(.valeaseOrange)
                             .fontWeight(.bold)
                             .font(.system(size: 30))
                         Text("Add Trip")
                             .font(.system(size: 20))
-                            .foregroundColor(.valeaseTeal)
+                            .foregroundColor(.valeaseOrange)
                             .fontWeight(.bold)
                     }
                 }
-
+                
             }
             
+        }.sheet(isPresented: $showSheet) {
+            TripDetailView(trip: Trip(), addTrip: { trip in
+                self.allTrips.tripList.append(trip)
+                self.showSheet.toggle()
+            })
+            
         }
-        
     }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-            .environmentObject(User())
-            .environmentObject(Trips())
+    
+    struct HomeView_Previews: PreviewProvider {
+        static var previews: some View {
+            HomeView()
+                .environmentObject(User())
+                .environmentObject(Trips())
+        }
     }
 }
