@@ -10,10 +10,11 @@ import SwiftUI
 class Event: Identifiable, ObservableObject {
     @Published var name: String
     @Published var location: String
-    @Published var date: String
+    @Published var date: Date
     @Published var time: String
+    let id = UUID()
     
-    init(name: String = "", location: String = "", date: String = "", time: String = "") {
+    init(name: String = "", location: String = "", date: Date = Date(), time: String = "") {
         self.name = name
         self.location = location
         self.date = date

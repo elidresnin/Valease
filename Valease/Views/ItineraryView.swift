@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ItineraryView: View {
-    @State var showSheet = false
-    @State var events: [Event] = []
+    @State private var showSheet = false
+    @State private var events: [Event] = []
+    @State private var newEvent: Event = Event()
     
-    func addEvent(event: Event) {
+    func addEvent(event: Event, date: Date) {
         events.append(event)
         showSheet.toggle()
     }
@@ -24,6 +25,12 @@ struct ItineraryView: View {
             events.move(fromOffsets: source, toOffset: destination)
     }
     
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("yyMMddhhmm")
+        return formatter
+    }()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -31,7 +38,7 @@ struct ItineraryView: View {
                     Button(action: {
                         showSheet.toggle()
                     }) {
-                        Text("+ Add item")
+                        Text("+ Add event")
                             .font(Constants.mediumFont)
                     }
                     .padding(1)
@@ -42,8 +49,13 @@ struct ItineraryView: View {
                         .padding(20)
                 }
                 List {
-                    ForEach(events) { event in
-                        Text(event.name)
+                    ForEach(events.sorted(by: {$0.date < $1.date})) { event in
+                        HStack {
+                            Text(event.name)
+                            Spacer()
+                            Text(event.date, formatter: ItineraryView.formatter)
+                        }
+                        
                     }
                     .onDelete(perform: deleteEvent)
                     .onMove(perform: moveEvent)
@@ -53,10 +65,10 @@ struct ItineraryView: View {
             .navigationBarTitle("Itinerary")
         }
         .sheet(isPresented: $showSheet) {
-       EventView(event: Event(), addEvent: { event in
-            self.events.append(event)
-            self.showSheet.toggle()
-            })
+            EventView(event: $newEvent, addEvent: { event, date in
+                self.events.append(event)
+                self.showSheet = false
+            }, showSheet: $showSheet)
         }
     }
 }

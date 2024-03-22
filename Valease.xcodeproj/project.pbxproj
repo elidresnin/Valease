@@ -12,6 +12,7 @@
 		5FD77D362BAA10520020C2C7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD77D352BAA10520020C2C7 /* Item.swift */; };
 		5FD77D382BAB4FD60020C2C7 /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD77D372BAB4FD60020C2C7 /* TripDetailView.swift */; };
 		5FD77D3A2BABB9850020C2C7 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD77D392BABB9850020C2C7 /* ItemDetailView.swift */; };
+		5FD77D3C2BACDB5F0020C2C7 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD77D3B2BACDB5F0020C2C7 /* EventDetailView.swift */; };
 		A22C8D212BA20A2700A00FB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D202BA20A2700A00FB6 /* User.swift */; };
 		A22C8D232BA20B6C00A00FB6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D222BA20B6C00A00FB6 /* SignupView.swift */; };
 		A22C8D252BA20D1500A00FB6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C8D242BA20D1500A00FB6 /* AccountView.swift */; };
@@ -37,6 +38,7 @@
 		5FD77D352BAA10520020C2C7 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		5FD77D372BAB4FD60020C2C7 /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
 		5FD77D392BABB9850020C2C7 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		5FD77D3B2BACDB5F0020C2C7 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		72D65E9615CAC9FD8C04485C /* Pods_Valease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Valease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A22C8D202BA20A2700A00FB6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A22C8D222BA20B6C00A00FB6 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -93,12 +95,10 @@
 				5FD77D392BABB9850020C2C7 /* ItemDetailView.swift */,
 				5FD77D332BA9F51D0020C2C7 /* ItemView.swift */,
 				A23C0BD42BA4C875002A8448 /* ItineraryView.swift */,
+				5FD77D3B2BACDB5F0020C2C7 /* EventDetailView.swift */,
 				A269F4982BA9EC6300E104EA /* HomeView.swift */,
-
 				5FD77D372BAB4FD60020C2C7 /* TripDetailView.swift */,
-
 				A23417CB2BAB52E10091CBDB /* EventView.swift */,
-
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,16 +288,14 @@
 				A22C8D272BA20D3C00A00FB6 /* ImagePicker.swift in Sources */,
 				5FD77D362BAA10520020C2C7 /* Item.swift in Sources */,
 				D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */,
-
 				5FD77D3A2BABB9850020C2C7 /* ItemDetailView.swift in Sources */,
-
 				A23417CA2BAB51D20091CBDB /* Event.swift in Sources */,
-
 				5FD77D342BA9F51D0020C2C7 /* ItemView.swift in Sources */,
 				A269F4992BA9EC6300E104EA /* HomeView.swift in Sources */,
 				A22C8D292BA368F700A00FB6 /* TripView.swift in Sources */,
 				A231F4E72B9F7DCD0090D8DB /* Constants.swift in Sources */,
 				5FD77D382BAB4FD60020C2C7 /* TripDetailView.swift in Sources */,
+				5FD77D3C2BACDB5F0020C2C7 /* EventDetailView.swift in Sources */,
 				A23C0BD32BA4C86C002A8448 /* PackingView.swift in Sources */,
 				A23C0BD52BA4C875002A8448 /* ItineraryView.swift in Sources */,
 				A22C8D232BA20B6C00A00FB6 /* SignupView.swift in Sources */,
