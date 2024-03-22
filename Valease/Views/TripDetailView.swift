@@ -55,7 +55,7 @@ struct TripDetailView: View {
                 }.padding()
                 Spacer()
             }
-            DatePicker("", selection: selectedDate, displayedComponents: .date)
+            DatePicker("", selection: selectedDate, in: (isStartDate ? Date()... : startDate...) , displayedComponents: [.date])
                 .datePickerStyle(.graphical)
                 .padding()
         }
