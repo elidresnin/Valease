@@ -7,19 +7,24 @@
 
 import SwiftUI
 
-struct FlightView: View {
-    var flights: Flights
+extension Data: Identifiable {
     
+}
+
+struct FlightView: View {
+    @State var flightsResult: FlightData
     var body: some View {
         VStack{
-            List(flights.results) {flight in
-                HStack{
-                    Text(flight.airline)
-                        .task {
-                           await flights.fetchData()
-                        }
-                      
+            Text(flightsResult.fly_to)
+            List(flightsResult.results) {flight in
+                VStack{
+                    Text("\(flight.airline) \(String(flight.flightNumber))")
+                        
+                        
                 }
+            }
+            .task {
+                await flightsResult.loadData()
             }
             
         }
@@ -27,7 +32,7 @@ struct FlightView: View {
 }
 struct FlightView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightView(flights: Flights())
-            
+        FlightView(flightsResult: FlightData())
+
     }
 }

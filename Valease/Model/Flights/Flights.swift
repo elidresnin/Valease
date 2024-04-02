@@ -25,19 +25,23 @@ class Flights: ObservableObject {
         self.departureDate = departureDate
         self.flightClass = flightClass
         self.numPassengers = numPassengers
+        
+        
     }
     
-    func fetchData() {
-        var result: FlightData = FlightData(fly_from: self.from, fly_to: self.to, date_to: self.departureDate)
+    func fetchData() async {
+        let result: FlightData = FlightData(fly_from: self.from, fly_to: self.to, date_to: self.departureDate)
         var count: Int = 0
-        
+        await result.loadData()
         for f in result.flightResponse.data {
-            results[count].airline = f.route[0].airline
-            results[count].arrival = f.route[0].local_arrival
-            results[count].departure = f.route[0].local_departure
+            results[count] = Flight()
+            results[count].airline = f.route[count].airline
+            results[count].arrival = f.route[count].local_arrival
+            results[count].departure = f.route[count].local_departure
             results[count].price = f.price
-            results[count].flightNumber = f.route[0].flight_no
+            results[count].flightNumber = f.route[count].flight_no
             count += 1
+            print("data entered \(count)")
         }
     }
     

@@ -43,8 +43,10 @@ class FlightData: ObservableObject {
     @Published var date_from: String
     @Published var date_to: String
     
+    @Published var results: [Flight] = []
     
-    init(fly_from: String = "phl", fly_to: String = "ORD", date_from: String = "04/04/2024", date_to: String = "08/04/2024") {
+    
+    init(fly_from: String = "PHL", fly_to: String = "ORD", date_from: String = "04/04/2024", date_to: String = "08/04/2024") {
         self.fly_from = fly_from
         self.fly_to = fly_to
         self.date_from = date_from
@@ -61,6 +63,18 @@ class FlightData: ObservableObject {
         guard let (data, _) = try? await URLSession.shared.data(for: request) else {return print("error at urlsession")}
         guard let decoded = try? JSONDecoder().decode(FlightResponse.self, from: data) else {return print("at decoded")}
         flightResponse = decoded
+        
+        parseData()
+        print(flightResponse.data)
     }
+    
+    
+    func parseData() {
+        for f in flightResponse.data {
+            results.append(Flight(airline: f.airlines.first ?? "err", flightNumber: f.route.first?.flight_no ?? 0, price: f.price, departure: f.route.first?.local_departure ?? "err", arrival: f.route.first?.local_arrival ?? ""))
+        }
+    }
+    
+    
 }
 
