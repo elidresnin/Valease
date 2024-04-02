@@ -14,6 +14,7 @@ class Item: Identifiable, ObservableObject {
     @Published var selectedReminder: String
     @Published var checked: Bool
     @Published var selectedReminderIndex: Int
+    let id = UUID()
     
     static let alerts = ["None", "1 hr before trip", "2 hr before trip", "12 hr before trip", "1 day before trip"]
     

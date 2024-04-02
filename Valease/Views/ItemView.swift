@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct ItemView: View {
     
@@ -48,6 +52,10 @@ struct ItemView: View {
             } label: {
                 Text("Add Item")
             }.padding()
+                .onSubmit {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+                    Database.database().reference().child("items/\(uid)/packingData").setValue(item)
+                }
         }
     }
     

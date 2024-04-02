@@ -9,9 +9,9 @@ import SwiftUI
 
 struct EventView: View {
     @Binding var event: Event
-    var addEvent: (Event, Date) -> Void
     @Binding var showSheet: Bool
     @State private var isShowingPicker = false
+    var addEvent: (Event, Date) -> Void
     
     static let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -34,7 +34,7 @@ struct EventView: View {
             Button(action: {
                 self.isShowingPicker.toggle()
             }) {
-                Text("\(event.date, formatter: Self.formatter)")
+                Text("Date: \(event.date, formatter: Self.formatter)")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(20)
             }
@@ -48,8 +48,6 @@ struct EventView: View {
                             Text("Cancel")
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         Button(action: {
-//                            self.date = date
-                            self.addEvent(self.event, self.event.date)
                             self.isShowingPicker = false
                         }) {
                         Text("Done")
@@ -75,7 +73,7 @@ struct EventView: View {
     struct EventView_Previews: PreviewProvider {
             
         static var previews: some View {
-            EventView(event: .constant(Event()), addEvent: { _, _ in }, showSheet: .constant(true))
+            EventView(event: .constant(Event()), showSheet: .constant(true), addEvent: { _, _ in })
         }
     }
 }

@@ -10,10 +10,10 @@ import SwiftUI
 struct ItineraryView: View {
     @State private var showSheet = false
     @State private var events: [Event] = []
-    @State private var newEvent: Event = Event()
     
     func addEvent(event: Event, date: Date) {
-        events.append(event)
+        let newEvent = Event(name: event.name, location: event.location, date: event.date, time: event.time)
+        events.append(newEvent)
         showSheet.toggle()
     }
     
@@ -65,10 +65,7 @@ struct ItineraryView: View {
             .navigationBarTitle("Itinerary")
         }
         .sheet(isPresented: $showSheet) {
-            EventView(event: $newEvent, addEvent: { event, date in
-                self.events.append(event)
-                self.showSheet = false
-            }, showSheet: $showSheet)
+            EventView(event: .constant(Event()), showSheet: $showSheet, addEvent: self.addEvent)
         }
     }
 }
