@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct TripDetailView: View {
-    
+    @EnvironmentObject var allTrips: Trips
+    @Binding var isSheetPresented: Bool
     @State var trip = Trip()
-    var addTrip: (Trip) -> Void
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var selectionState: SelectionState? = nil
-    @State private var isSheetPresented = false
     
     enum SelectionState: Identifiable {
         case startDate, endDate
@@ -25,6 +24,11 @@ struct TripDetailView: View {
                 case .endDate: return 1
             }
         }
+    }
+    
+    func addTrip() {
+        allTrips.tripList.append(trip)
+        isSheetPresented = false
     }
     
     func formattedDate(date: Date) -> String {
@@ -93,7 +97,8 @@ struct TripDetailView: View {
             }
             Spacer()
             Button {
-                addTrip(trip)
+                addTrip()
+                isSheetPresented = false
             } label: {
                 Text("Add Trip")
             }.padding()
@@ -105,6 +110,7 @@ struct TripDetailView: View {
 
 struct TripDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TripDetailView(trip: Trip(), addTrip: {_ in })
+        TripDetailView(isSheetPresented: .constant(true))
+            .environmentObject(Trips())
     }
 }

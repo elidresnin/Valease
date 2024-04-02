@@ -12,10 +12,10 @@ struct HomeView: View {
     @EnvironmentObject var allTrips: Trips
     @State var showSheet = false
     
-    func addTrip(trip: Trip) {
-        allTrips.tripList.append(trip)
-        showSheet.toggle()
-    }
+//    func addTrip(trip: Trip) {
+//        allTrips.tripList.append(trip)
+//        showSheet = false
+//    }
     
     func deleteTrip(at offsets: IndexSet) {
         allTrips.tripList.remove(atOffsets: offsets)
@@ -67,11 +67,7 @@ struct HomeView: View {
             }
             
         }.sheet(isPresented: $showSheet) {
-            TripDetailView(trip: Trip(), addTrip: { trip in
-                self.allTrips.tripList.append(trip)
-                self.showSheet.toggle()
-            })
-            
+            TripDetailView(isSheetPresented: $showSheet)
         }
     }
     
