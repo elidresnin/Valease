@@ -16,7 +16,7 @@ struct FlightView: View {
     var body: some View {
         VStack{
             Text(flightsResult.fly_to)
-            List(flightsResult.results) {flight in
+            List(flightsResult.results){ flight in
                 VStack{
                     Text("\(flight.airline) \(String(flight.flightNumber))")
                         
@@ -25,6 +25,7 @@ struct FlightView: View {
             }
             .task {
                 await flightsResult.loadData()
+                print("dtat")
             }
             
         }

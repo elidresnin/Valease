@@ -65,7 +65,8 @@ class FlightData: ObservableObject {
         flightResponse = decoded
         
         parseData()
-        print(flightResponse.data)
+        print(results)
+        
     }
     
     
