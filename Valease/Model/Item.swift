@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseStorage
+import FirebaseAuth
+import FirebaseDatabase
 
 class Item: Identifiable, ObservableObject {
     @Published var name: String
@@ -25,6 +29,7 @@ class Item: Identifiable, ObservableObject {
         self.selectedReminder = selectedReminder
         self.checked = checked
         self.selectedReminderIndex = selectedReminderIndex
+        
     }
     
 }

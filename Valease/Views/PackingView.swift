@@ -16,9 +16,24 @@ struct PackingView: View {
     @State var showSheet = false
     @State var items: [Item] = []
     
+    func saveItem(name: String, quantity: String, id: UUID) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/items/\(id)")
+        
+        let itemObject = [
+            "name" : name,
+            "quantity" : quantity,
+            "id" : id
+        ] as [String: Any]
+        
+        databaseRef.setValue(itemObject)
+    }
+    
     func addItem(item: Item) {
         items.append(item)
         showSheet.toggle()
+        saveItem(name: item.name, quantity: item.quantity, id: item.id)
     }
     
     func deleteItem(at indexSet: IndexSet) {
@@ -60,9 +75,9 @@ struct PackingView: View {
             .navigationBarTitle("Packing List")
         }
         .sheet(isPresented: $showSheet) {
-        ItemView(item: Item(), addItem: { item in
-            self.items.append(item)
-            self.showSheet.toggle()
+            ItemView(item: Item(), addItem: { item in
+                self.addItem(item: item)
+                self.showSheet.toggle()
             })
         }
     }

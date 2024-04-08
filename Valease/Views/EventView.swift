@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct EventView: View {
     @Binding var event: Event
@@ -67,6 +71,11 @@ struct EventView: View {
             } label: {
                 Text("Add event")
             }.padding()
+                .onSubmit {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+                    Database.database().reference().child("users/\(uid)/events/\(event.id)/name").setValue(event.name)
+                    Database.database().reference().child("users/\(uid)/events/\(event.id)/location").setValue(event.location)
+                }
         }
     }
     
