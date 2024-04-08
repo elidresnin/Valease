@@ -54,7 +54,8 @@ struct ItemView: View {
             }.padding()
                 .onSubmit {
                     guard let uid = Auth.auth().currentUser?.uid else {return}
-                    Database.database().reference().child("items/\(uid)/packingData").setValue(item)
+                    Database.database().reference().child("users/\(uid)/items/\(item.id)/name").setValue(item.name)
+                    Database.database().reference().child("users/\(uid)/items/\(item.id)/quantity").setValue(item.quantity)
                 }
         }
     }

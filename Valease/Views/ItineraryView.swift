@@ -6,15 +6,40 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct ItineraryView: View {
     @State private var showSheet = false
     @State private var events: [Event] = []
     
+    func saveEvent(name: String, location: String, id: UUID) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+       
+        let eventObject = [
+            "name" : name,
+            "location" : location,
+            "id" : id
+        ] as [String: Any]
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/events/\(id)")
+        
+//        let eventObject = [
+//            "name" : name,
+//            "location" : location,
+//            "id" : id
+//        ] as [String: Any]
+        
+        databaseRef.setValue(eventObject)
+    }
+    
     func addEvent(event: Event, date: Date) {
         let newEvent = Event(name: event.name, location: event.location, date: event.date, time: event.time)
         events.append(newEvent)
         showSheet.toggle()
+        saveEvent(name: newEvent.name, location: newEvent.location, id: newEvent.id)
     }
     
     func deleteEvent(at indexSet: IndexSet) {
