@@ -12,6 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct EventView: View {
+    @EnvironmentObject var events: Events
     @Binding var event: Event
     @Binding var showSheet: Bool
     @State private var isShowingPicker = false
@@ -83,6 +84,7 @@ struct EventView: View {
             
         static var previews: some View {
             EventView(event: .constant(Event()), showSheet: .constant(true), addEvent: { _, _ in })
+                .environmentObject(Events())
         }
     }
 }
