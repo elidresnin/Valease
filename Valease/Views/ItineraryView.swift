@@ -12,9 +12,9 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct ItineraryView: View {
-    @EnvironmentObject var eventList : Events
+    @EnvironmentObject var events : Events
     @State private var showSheet = false
-    @State var events: [Event] = []
+//    @State var events: [Event] = []
     
     func saveEvent(name: String, location: String, id: UUID) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
@@ -22,33 +22,27 @@ struct ItineraryView: View {
         let eventObject = [
             "name" : name,
             "location" : location,
-            "id" : id
+            "id" : id.uuidString
         ] as [String: Any]
         
-        let databaseRef = Database.database().reference().child("users/\(uid)/events/\(id)")
-        
-//        let eventObject = [
-//            "name" : name,
-//            "location" : location,
-//            "id" : id
-//        ] as [String: Any]
+        let databaseRef = Database.database().reference().child("users/\(uid)/events/\(id)").childByAutoId()
         
         databaseRef.setValue(eventObject)
     }
     
     func addEvent(event: Event, date: Date) {
         let newEvent = Event(name: event.name, location: event.location, date: event.date, time: event.time)
-        events.append(newEvent)
+        events.eventList.append(newEvent)
         showSheet.toggle()
         saveEvent(name: newEvent.name, location: newEvent.location, id: newEvent.id)
     }
     
     func deleteEvent(at indexSet: IndexSet) {
-            events.remove(atOffsets: indexSet)
+        events.eventList.remove(atOffsets: indexSet)
     }
     
     func moveEvent(from source: IndexSet, to destination: Int) {
-            events.move(fromOffsets: source, toOffset: destination)
+        events.eventList.move(fromOffsets: source, toOffset: destination)
     }
     
     static let formatter: DateFormatter = {
@@ -75,7 +69,7 @@ struct ItineraryView: View {
                         .padding(20)
                 }
                 List {
-                    ForEach(events.sorted(by: {$0.date < $1.date})) { event in
+                    ForEach(events.eventList.sorted(by: {$0.date < $1.date})) { event in
                         HStack {
                             Text(event.name)
                             Spacer()

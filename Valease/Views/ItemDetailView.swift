@@ -48,5 +48,6 @@ struct ItemDetailView: View {
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ItemDetailView(item: Item())
+            .environmentObject(Items())
     }
 }

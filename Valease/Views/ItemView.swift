@@ -15,6 +15,7 @@ struct ItemView: View {
     @EnvironmentObject var items: Items
     @ObservedObject var item: Item
     var addItem: (Item) -> Void
+    @Binding var showSheet: Bool
     
     var body: some View {
         VStack {
@@ -49,6 +50,7 @@ struct ItemView: View {
             Spacer()
             Button {
                 addItem(item)
+                showSheet = false
             } label: {
                 Text("Add Item")
             }.padding()
@@ -62,7 +64,7 @@ struct ItemView: View {
     
     struct ItemView_Previews: PreviewProvider {
         static var previews: some View {
-            ItemView(item: Item(), addItem: {_ in})
+            ItemView(item: Item(), addItem: {_ in}, showSheet: .constant(false))
                 .environmentObject(Items())
         }
     }

@@ -12,36 +12,35 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct PackingView: View {
-    @EnvironmentObject var itemList : Items
+    @EnvironmentObject var items : Items
     @State var showSheet = false
-    @State var items: [Item] = []
     
     func saveItem(name: String, quantity: String, id: UUID) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
-        let databaseRef = Database.database().reference().child("users/\(uid)/items/\(id)")
+        let databaseRef = Database.database().reference().child("users/\(uid)/items/\(id)").childByAutoId()
         
         let itemObject = [
             "name" : name,
             "quantity" : quantity,
-            "id" : id
+            "id" : id.uuidString
         ] as [String: Any]
         
         databaseRef.setValue(itemObject)
     }
     
     func addItem(item: Item) {
-        items.append(item)
+        items.itemList.append(item)
         showSheet.toggle()
         saveItem(name: item.name, quantity: item.quantity, id: item.id)
     }
     
     func deleteItem(at indexSet: IndexSet) {
-            items.remove(atOffsets: indexSet)
+        items.itemList.remove(atOffsets: indexSet)
     }
     
     func moveItem(from source: IndexSet, to destination: Int) {
-            items.move(fromOffsets: source, toOffset: destination)
+        items.itemList.move(fromOffsets: source, toOffset: destination)
     }
     
     var body: some View {
@@ -62,7 +61,7 @@ struct PackingView: View {
                         .padding(20)
                 }
                 List {
-                    ForEach(items) { item in
+                    ForEach(items.itemList) { item in
                         NavigationLink(destination: ItemDetailView(item: item)) {
                             Text(item.name)
                         }
@@ -77,8 +76,7 @@ struct PackingView: View {
         .sheet(isPresented: $showSheet) {
             ItemView(item: Item(), addItem: { item in
                 self.addItem(item: item)
-                self.showSheet.toggle()
-            })
+            }, showSheet: $showSheet)
         }
     }
 }

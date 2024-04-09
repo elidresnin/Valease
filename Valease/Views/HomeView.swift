@@ -76,6 +76,8 @@ struct HomeView: View {
             HomeView()
                 .environmentObject(User())
                 .environmentObject(Trips())
+                .environmentObject(Items())
+                .environmentObject(Events())
         }
     }
 }

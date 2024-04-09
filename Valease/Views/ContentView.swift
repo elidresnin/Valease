@@ -88,5 +88,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environmentObject(User())
             .environmentObject(Trips())
+            .environmentObject(Items())
+            .environmentObject(Events())
     }
 }
