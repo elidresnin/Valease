@@ -6,16 +6,13 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseAuth
-import FirebaseStorage
-import FirebaseDatabase
+
 
 class Event: Identifiable, ObservableObject {
-    @Published var name: String
-    @Published var location: String
-    @Published var date: Date
-    @Published var time: String
+    var name: String
+    var location: String
+    var date: Date
+    var time: String
     let id = UUID()
     
     init(name: String = "", location: String = "", date: Date = Date(), time: String = "") {

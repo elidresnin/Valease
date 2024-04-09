@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct PackingView: View {
-    
+    @EnvironmentObject var itemList : Items
     @State var showSheet = false
     @State var items: [Item] = []
     
@@ -86,6 +86,6 @@ struct PackingView: View {
 struct PackingView_Previews: PreviewProvider {
     static var previews: some View {
         PackingView()
-            .environmentObject(Item())
+            .environmentObject(Items())
     }
 }

@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct ItemView: View {
-    
+    @EnvironmentObject var items: Items
     @ObservedObject var item: Item
     var addItem: (Item) -> Void
     
@@ -63,6 +63,7 @@ struct ItemView: View {
     struct ItemView_Previews: PreviewProvider {
         static var previews: some View {
             ItemView(item: Item(), addItem: {_ in})
+                .environmentObject(Items())
         }
     }
 }

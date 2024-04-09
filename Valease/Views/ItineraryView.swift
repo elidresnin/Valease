@@ -12,8 +12,9 @@ import FirebaseStorage
 import FirebaseDatabase
 
 struct ItineraryView: View {
+    @EnvironmentObject var eventList : Events
     @State private var showSheet = false
-    @State private var events: [Event] = []
+    @State var events: [Event] = []
     
     func saveEvent(name: String, location: String, id: UUID) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
@@ -98,6 +99,6 @@ struct ItineraryView: View {
 struct ItineraryView_Previews: PreviewProvider {
     static var previews: some View {
         ItineraryView()
-            .environmentObject(Event())
+            .environmentObject(Events())
     }
 }
