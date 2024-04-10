@@ -9,6 +9,6 @@ import SwiftUI
 
 class Items : ObservableObject {
     @Published var itemList: [Item] = [
-        Item()
+        Item(name: "Default", quantity: "2")
     ]
 }

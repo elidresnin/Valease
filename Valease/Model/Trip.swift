@@ -13,7 +13,7 @@ struct Trip: Identifiable{
     var dates: Date
     let id = UUID()
     
-    init(name: String = "Spring Break", location: String = "Miami, Florida", dates: Date = Date()) {
+    init(name: String = "", location: String = "", dates: Date = Date()) {
         self.name = name
         self.location = location
         self.dates = dates

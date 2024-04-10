@@ -9,7 +9,7 @@ import SwiftUI
 
 class Events : ObservableObject {
     @Published var eventList: [Event] = [
-        Event()
+        Event(name: "Default", location: "Miami Beach")
     ]
 }
 

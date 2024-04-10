@@ -63,7 +63,17 @@ struct ItineraryView: View {
                     }
                     .padding(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                   
                     Spacer()
+                    
+                    //IMPLEMENT LATER W FLIGHTS ADDED
+                    Button {
+                        
+                    } label: {
+                        Text("+ Add flight")
+                            .font(Constants.mediumFont)
+                    }
+                   
                     EditButton()
                         .font(Constants.mediumFont)
                         .padding(20)
