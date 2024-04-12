@@ -6,16 +6,35 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct HomeView: View {
     @EnvironmentObject var user: User
     @EnvironmentObject var allTrips: Trips
     @State var showSheet = false
     
-//    func addTrip(trip: Trip) {
-//        allTrips.tripList.append(trip)
-//        showSheet = false
-//    }
+    func saveTrip(name: String, location: String, id: UUID) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(id)").childByAutoId()
+        
+        let tripObject = [
+            "name" : name,
+            "location" : location,
+            "id" : id.uuidString
+        ] as [String: Any]
+        
+        databaseRef.setValue(tripObject)
+    }
+    
+    func addTrip(trip: Trip) {
+        allTrips.tripList.append(trip)
+        showSheet.toggle()
+        saveTrip(name: trip.name, location: trip.location, id: trip.id)
+    }
     
     func deleteTrip(at offsets: IndexSet) {
         allTrips.tripList.remove(atOffsets: offsets)
@@ -67,7 +86,9 @@ struct HomeView: View {
             }
             
         }.sheet(isPresented: $showSheet) {
-            TripDetailView(isSheetPresented: $showSheet)
+            TripDetailView(isSheetPresented: .constant(false), trip: Trip(), addTrip: { trip in
+                self.addTrip(trip: trip)
+            })
         }
     }
     

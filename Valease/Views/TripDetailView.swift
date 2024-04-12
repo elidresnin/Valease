@@ -14,6 +14,7 @@ struct TripDetailView: View {
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var selectionState: SelectionState? = nil
+    var addTrip: (Trip) -> Void
     
     enum SelectionState: Identifiable {
         case startDate, endDate
@@ -26,10 +27,10 @@ struct TripDetailView: View {
         }
     }
     
-    func addTrip() {
-        allTrips.tripList.append(trip)
-        isSheetPresented = false
-    }
+//    func addTrip() {
+//        allTrips.tripList.append(trip)
+//        isSheetPresented = false
+//    }
     
     func formattedDate(date: Date) -> String {
         let formatter = DateFormatter()
@@ -97,7 +98,7 @@ struct TripDetailView: View {
             }
             Spacer()
             Button {
-                addTrip()
+                addTrip(trip)
                 isSheetPresented = false
             } label: {
                 Text("Add Trip")
@@ -110,7 +111,7 @@ struct TripDetailView: View {
 
 struct TripDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TripDetailView(isSheetPresented: .constant(true))
+        TripDetailView(isSheetPresented: .constant(false), trip: Trip(), addTrip: {_ in})
             .environmentObject(Trips())
     }
 }
