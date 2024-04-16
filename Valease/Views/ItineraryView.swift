@@ -14,18 +14,20 @@ import FirebaseDatabase
 struct ItineraryView: View {
     @EnvironmentObject var events : Events
     @State private var showSheet = false
+    @Binding var currentTrip : Trip
 //    @State var events: [Event] = []
     
     func saveEvent(name: String, location: String, id: UUID) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
+        let tid = currentTrip.id
        
         let eventObject = [
-            "name" : name,
-            "location" : location,
-            "id" : id.uuidString
-        ] as [String: Any]
+                    "name" : name,
+                    "location" : location,
+                    "id" : id.uuidString
+                ] as [String: Any]
         
-        let databaseRef = Database.database().reference().child("users/\(uid)/events/\(id)").childByAutoId()
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(tid)/events/\(id)")
         
         databaseRef.setValue(eventObject)
     }
@@ -95,14 +97,14 @@ struct ItineraryView: View {
             .navigationBarTitle("Itinerary")
         }
         .sheet(isPresented: $showSheet) {
-            EventView(event: .constant(Event()), showSheet: $showSheet, addEvent: self.addEvent)
+            EventView(event: .constant(Event()), showSheet: $showSheet, currentTrip: $currentTrip, addEvent: self.addEvent)
         }
     }
 }
 
 struct ItineraryView_Previews: PreviewProvider {
     static var previews: some View {
-        ItineraryView()
+        ItineraryView(currentTrip: Binding.constant(Trip()))
             .environmentObject(Events())
     }
 }

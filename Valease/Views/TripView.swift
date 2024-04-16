@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct TripView: View {
-    @State var trip: Trip
+    @Binding var currentTrip: Trip
     
     var body: some View {
-        NavigationView{
+        //NavigationView{
             VStack{
                 NavigationLink(destination: {
-                    PackingView()
-                        .navigationBarBackButtonHidden(true)
+                    PackingView(currentTrip: $currentTrip)
                 }, label: {
                     VStack{
                         HStack {
@@ -32,11 +31,10 @@ struct TripView: View {
                     }
                 })
                 
-                Spacer()
+//                Spacer()
                 
                 NavigationLink{
-                    ItineraryView()
-                        .navigationBarBackButtonHidden(true)
+                    ItineraryView(currentTrip: $currentTrip)
                 } label: {
                     VStack{
                         HStack {
@@ -52,16 +50,16 @@ struct TripView: View {
                             .frame(width: 200)
                     }
                 }
-            }.navigationTitle(trip.name)
+            }.navigationTitle(currentTrip.name)
                 .padding()
-        }
+        //}
 
     }
 }
 
 struct TripView_Previews: PreviewProvider {
     static var previews: some View {
-        TripView(trip: Trip())
+        TripView(currentTrip: Binding.constant(Trip()))
             .environmentObject(Trips())
     }
 }

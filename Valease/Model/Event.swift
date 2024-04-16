@@ -22,4 +22,10 @@ class Event: Identifiable, ObservableObject {
         self.time = time
     }
     
+//    func make_dictionary(){
+//        
+//        let stuff :Dictionary = ["name": name, "location": location, "date": date.toString()]
+//        return  [id:[stuff]]
+//    }
+//    
 }

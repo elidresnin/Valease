@@ -13,18 +13,20 @@ import FirebaseDatabase
 
 struct PackingView: View {
     @EnvironmentObject var items : Items
+    @Binding var currentTrip : Trip
     @State var showSheet = false
     
     func saveItem(name: String, quantity: String, id: UUID) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        
-        let databaseRef = Database.database().reference().child("users/\(uid)/items/\(id)").childByAutoId()
+        let tid = currentTrip.id
         
         let itemObject = [
             "name" : name,
             "quantity" : quantity,
             "id" : id.uuidString
         ] as [String: Any]
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(tid)/items/\(id)")
         
         databaseRef.setValue(itemObject)
     }
@@ -76,14 +78,14 @@ struct PackingView: View {
         .sheet(isPresented: $showSheet) {
             ItemView(item: Item(), addItem: { item in
                 self.addItem(item: item)
-            }, showSheet: $showSheet)
+            }, showSheet: $showSheet, currentTrip: $currentTrip)
         }
     }
 }
 
 struct PackingView_Previews: PreviewProvider {
     static var previews: some View {
-        PackingView()
+        PackingView(currentTrip: Binding.constant(Trip()))
             .environmentObject(Items())
     }
 }

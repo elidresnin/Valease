@@ -5,7 +5,7 @@
 //  Created by Penelope Cohen (student LM) on 3/19/24.
 //
 
-import Foundation
+import SwiftUI
 
 struct Trip: Identifiable{
     var name: String
@@ -18,5 +18,9 @@ struct Trip: Identifiable{
         self.location = location
         self.dates = dates
     }
+    
+//    func make_dictionary(){
+//        [String:String]
+//    }
 }
 
