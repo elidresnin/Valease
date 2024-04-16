@@ -16,6 +16,7 @@ struct EventView: View {
     @Binding var event: Event
     @Binding var showSheet: Bool
     @State private var isShowingPicker = false
+    @Binding var currentTrip : Trip
     var addEvent: (Event, Date) -> Void
     
     static let formatter: DateFormatter = {
@@ -74,8 +75,8 @@ struct EventView: View {
             }.padding()
                 .onSubmit {
                     guard let uid = Auth.auth().currentUser?.uid else {return}
-                    Database.database().reference().child("users/\(uid)/events/\(event.id)/name").setValue(event.name)
-                    Database.database().reference().child("users/\(uid)/events/\(event.id)/location").setValue(event.location)
+                    Database.database().reference().child("users/\(uid)/\(currentTrip.id)/events/\(event.id)/name").setValue(event.name)
+                    Database.database().reference().child("users/\(uid)/\(currentTrip.id)/events/\(event.id)/location").setValue(event.location)
                 }
         }
     }
@@ -83,7 +84,7 @@ struct EventView: View {
     struct EventView_Previews: PreviewProvider {
             
         static var previews: some View {
-            EventView(event: .constant(Event()), showSheet: .constant(true), addEvent: { _, _ in })
+            EventView(event: .constant(Event()), showSheet: .constant(true), currentTrip: Binding.constant(Trip()), addEvent: { _, _ in })
                 .environmentObject(Events())
         }
     }

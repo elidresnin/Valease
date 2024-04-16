@@ -13,6 +13,7 @@ enum ViewState{
 
 struct ContentView: View {
     @EnvironmentObject var user: User
+    @EnvironmentObject var trips: Trips
     @State var viewState: ViewState = .home
     
     var body: some View {

@@ -16,18 +16,20 @@ struct HomeView: View {
     @EnvironmentObject var allTrips: Trips
     @State var showSheet = false
     
+    
     func saveTrip(name: String, location: String, id: UUID) {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
-        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(id)").childByAutoId()
-        
         let tripObject = [
-            "name" : name,
-            "location" : location,
-            "id" : id.uuidString
-        ] as [String: Any]
+                    "name" : name,
+                    "location" : location,
+                    "id" : id.uuidString
+                ] as [String: Any]
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(id)")
         
         databaseRef.setValue(tripObject)
+
     }
     
     func addTrip(trip: Trip) {
@@ -54,8 +56,8 @@ struct HomeView: View {
                 Spacer()
                 
                 List {
-                    ForEach(allTrips.tripList) { trip in
-                        NavigationLink(destination: TripView(trip: trip)) {
+                    ForEach($allTrips.tripList) { $trip in
+                        NavigationLink(destination: TripView(currentTrip: $trip)) {
                             Text(trip.name)
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
