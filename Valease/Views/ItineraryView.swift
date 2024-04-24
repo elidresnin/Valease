@@ -54,7 +54,7 @@ struct ItineraryView: View {
     }()
     
     var body: some View {
-        NavigationView {
+       // NavigationView {
             VStack {
                 HStack {
                     Button(action: {
@@ -95,7 +95,7 @@ struct ItineraryView: View {
             }
             .padding()
             .navigationBarTitle("Itinerary")
-        }
+       // }
         .sheet(isPresented: $showSheet) {
             EventView(event: .constant(Event()), showSheet: $showSheet, currentTrip: $currentTrip, addEvent: self.addEvent)
         }
