@@ -46,7 +46,7 @@ struct PackingView: View {
     }
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             VStack {
                 HStack {
                     Button(action: {
@@ -74,7 +74,7 @@ struct PackingView: View {
             }
             .padding()
             .navigationBarTitle("Packing List")
-        }
+        //}
         .sheet(isPresented: $showSheet) {
             ItemView(item: Item(), addItem: { item in
                 self.addItem(item: item)
