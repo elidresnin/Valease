@@ -28,7 +28,6 @@
 		D0B9723D2B9B8127004BC83A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */; };
 		D0C9E8D22BACB04200BD23AE /* FlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8D12BACB04200BD23AE /* FlightView.swift */; };
 		D0C9E8D52BACB08D00BD23AE /* FetchFlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8D42BACB08D00BD23AE /* FetchFlightData.swift */; };
-		D0C9E8D72BACB11F00BD23AE /* Flights.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8D62BACB11F00BD23AE /* Flights.swift */; };
 		D0C9E8D92BACB2CD00BD23AE /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8D82BACB2CD00BD23AE /* Flight.swift */; };
 		D0C9E8DB2BACB8FF00BD23AE /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8DA2BACB8FF00BD23AE /* FlightDetailView.swift */; };
 		D0C9E8DE2BACDA1B00BD23AE /* FlightInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8DD2BACDA1B00BD23AE /* FlightInputView.swift */; };
@@ -61,7 +60,6 @@
 		D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0C9E8D12BACB04200BD23AE /* FlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightView.swift; sourceTree = "<group>"; };
 		D0C9E8D42BACB08D00BD23AE /* FetchFlightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFlightData.swift; sourceTree = "<group>"; };
-		D0C9E8D62BACB11F00BD23AE /* Flights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flights.swift; sourceTree = "<group>"; };
 		D0C9E8D82BACB2CD00BD23AE /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		D0C9E8DA2BACB8FF00BD23AE /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailView.swift; sourceTree = "<group>"; };
 		D0C9E8DD2BACDA1B00BD23AE /* FlightInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightInputView.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				D0C9E8D42BACB08D00BD23AE /* FetchFlightData.swift */,
-				D0C9E8D62BACB11F00BD23AE /* Flights.swift */,
 				D0C9E8D82BACB2CD00BD23AE /* Flight.swift */,
 			);
 			path = Flights;
@@ -321,7 +318,6 @@
 				A22C8D272BA20D3C00A00FB6 /* ImagePicker.swift in Sources */,
 				D0C9E8DE2BACDA1B00BD23AE /* FlightInputView.swift in Sources */,
 				5FD77D362BAA10520020C2C7 /* Item.swift in Sources */,
-				D0C9E8D72BACB11F00BD23AE /* Flights.swift in Sources */,
 				D0C9E8D22BACB04200BD23AE /* FlightView.swift in Sources */,
 				D0DA04302B9B7B27007151B3 /* ValeaseApp.swift in Sources */,
 				5FD77D3A2BABB9850020C2C7 /* ItemDetailView.swift in Sources */,
@@ -465,7 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Valease/Preview Content\"";
-				DEVELOPMENT_TEAM = 75S3FJQVUH;
+				DEVELOPMENT_TEAM = 66M64NYV4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -497,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Valease/Preview Content\"";
-				DEVELOPMENT_TEAM = 75S3FJQVUH;
+				DEVELOPMENT_TEAM = 66M64NYV4W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -20,33 +20,39 @@ struct FlightInputView: View {
                 Text("Enter Flight Informantion")
                     .font(Constants.mediumFont)
                 Spacer()
-                TextField("To", text: $to)
+                TextField("To", text: $flights.fly_to)
                     .padding()
                     .multilineTextAlignment(.center)
                     .font(Constants.mediumFont)
                     .border(Color.valeaseOrange, width: 4)
                     .padding()
                 Spacer()
-                TextField("From", text: $from)
+                TextField("From", text: $flights.fly_from)
                     .padding()
                     .multilineTextAlignment(.center)
                     .font(Constants.mediumFont)
                     .border(Color.valeaseOrange, width: 4)
                     .padding()
                 Spacer()
-                TextField("Departure Date", text: $date)
-                    .padding()
-                    .multilineTextAlignment(.center)
-                    .font(Constants.mediumFont)
-                    .border(Color.valeaseOrange, width: 4)
-                    .padding()
+                DatePicker("Select a Date",
+                           selection: $flights.date_to,
+                                       displayedComponents: .date)
+                .padding()
+                .multilineTextAlignment(.center)
+                .font(Constants.mediumFont)
+                .border(Color.valeaseOrange, width: 4)
+                .padding()
                 Spacer()
-                if (from != "" && to != "" && date != ""){
+                if (flights.fly_from != "" && flights.fly_to != ""){
                     NavigationLink {
-                        
-                        FlightView(flightsResult: FlightData(fly_from: from, fly_to: to, date_from: date, date_to: date))
+                        FlightView()
+                            .task {
+                                await flights.loadData()
+                               
+                            }
+                            
                     } label: {
-                        Text("search")
+                        Text("Search")
                             .font(Constants.mediumFont)
                             .foregroundColor(Color.textColor)
                             .padding(.horizontal, 114)
