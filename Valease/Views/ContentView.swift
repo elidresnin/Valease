@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ViewState{
-    case home, account
+    case home, account, flights
 }
 
 struct ContentView: View {
@@ -21,8 +21,10 @@ struct ContentView: View {
             if user.loggedIn{
                 if viewState == .home{
                     HomeView()
-                } else {
+                } else if viewState == .account{
                     AccountView()
+                } else{
+                    FlightInputView()
                 }
                 HStack{
                     Button {
@@ -51,7 +53,7 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
-                       
+                        viewState = .flights
                     } label: {
                         VStack{
                             Image(systemName: "airplane")
