@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
+
 struct ItineraryView: View {
     @EnvironmentObject var events : Events
     @State private var showSheet = false
@@ -69,9 +70,7 @@ struct ItineraryView: View {
                     Spacer()
                     
                     //IMPLEMENT LATER W FLIGHTS ADDED
-                    Button {
-                        
-                    } label: {
+                    NavigationLink(destination: FlightInputView()){
                         Text("+ Add flight")
                             .font(Constants.mediumFont)
                     }

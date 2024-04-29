@@ -36,7 +36,7 @@ struct ValeaseApp: App {
     
     var body: some Scene {
         WindowGroup {
-            FlightInputView()
+            ContentView()
                 .environmentObject(user)
                 .environmentObject(trips)
 
