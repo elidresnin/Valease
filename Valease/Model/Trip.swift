@@ -5,7 +5,7 @@
 //  Created by Penelope Cohen (student LM) on 3/19/24.
 //
 
-import Foundation
+import SwiftUI
 
 struct Trip: Identifiable{
     var name: String
@@ -13,10 +13,14 @@ struct Trip: Identifiable{
     var dates: Date
     let id = UUID()
     
-    init(name: String = "Spring Break", location: String = "Miami, Florida", dates: Date = Date()) {
+    init(name: String = "", location: String = "", dates: Date = Date()) {
         self.name = name
         self.location = location
         self.dates = dates
     }
+    
+//    func make_dictionary(){
+//        [String:String]
+//    }
 }
 

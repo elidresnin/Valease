@@ -6,15 +6,36 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct HomeView: View {
     @EnvironmentObject var user: User
     @EnvironmentObject var allTrips: Trips
     @State var showSheet = false
     
+    
+    func saveTrip(name: String, location: String, id: UUID) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        
+        let tripObject = [
+                    "name" : name,
+                    "location" : location,
+                    "id" : id.uuidString
+                ] as [String: Any]
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(id)")
+        
+        databaseRef.setValue(tripObject)
+
+    }
+    
     func addTrip(trip: Trip) {
         allTrips.tripList.append(trip)
         showSheet.toggle()
+        saveTrip(name: trip.name, location: trip.location, id: trip.id)
     }
     
     func deleteTrip(at offsets: IndexSet) {
@@ -35,8 +56,8 @@ struct HomeView: View {
                 Spacer()
                 
                 List {
-                    ForEach(allTrips.tripList) { trip in
-                        NavigationLink(destination: TripView(trip: trip)) {
+                    ForEach($allTrips.tripList) { $trip in
+                        NavigationLink(destination: TripView(currentTrip: $trip)) {
                             Text(trip.name)
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -67,11 +88,9 @@ struct HomeView: View {
             }
             
         }.sheet(isPresented: $showSheet) {
-            TripDetailView(trip: Trip(), addTrip: { trip in
-                self.allTrips.tripList.append(trip)
-                self.showSheet.toggle()
+            TripDetailView(isSheetPresented: .constant(false), trip: Trip(), addTrip: { trip in
+                self.addTrip(trip: trip)
             })
-            
         }
     }
     
@@ -80,6 +99,8 @@ struct HomeView: View {
             HomeView()
                 .environmentObject(User())
                 .environmentObject(Trips())
+                .environmentObject(Items())
+                .environmentObject(Events())
         }
     }
 }

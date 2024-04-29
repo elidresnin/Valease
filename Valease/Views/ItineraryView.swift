@@ -6,44 +6,88 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct ItineraryView: View {
-    @State var showSheet = false
-    @State var events: [Event] = []
+    @EnvironmentObject var events : Events
+    @State private var showSheet = false
+    @Binding var currentTrip : Trip
+//    @State var events: [Event] = []
     
-    func addEvent(event: Event) {
-        events.append(event)
+    func saveEvent(name: String, location: String, id: UUID) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let tid = currentTrip.id
+       
+        let eventObject = [
+                    "name" : name,
+                    "location" : location,
+                    "id" : id.uuidString
+                ] as [String: Any]
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(tid)/events/\(id)")
+        
+        databaseRef.setValue(eventObject)
+    }
+    
+    func addEvent(event: Event, date: Date) {
+        let newEvent = Event(name: event.name, location: event.location, date: event.date, time: event.time)
+        events.eventList.append(newEvent)
         showSheet.toggle()
+        saveEvent(name: newEvent.name, location: newEvent.location, id: newEvent.id)
     }
     
     func deleteEvent(at indexSet: IndexSet) {
-            events.remove(atOffsets: indexSet)
+        events.eventList.remove(atOffsets: indexSet)
     }
     
     func moveEvent(from source: IndexSet, to destination: Int) {
-            events.move(fromOffsets: source, toOffset: destination)
+        events.eventList.move(fromOffsets: source, toOffset: destination)
     }
     
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("yyMMddhhmm")
+        return formatter
+    }()
+    
     var body: some View {
-        NavigationView {
+       // NavigationView {
             VStack {
                 HStack {
                     Button(action: {
                         showSheet.toggle()
                     }) {
-                        Text("+ Add item")
+                        Text("+ Add event")
                             .font(Constants.mediumFont)
                     }
                     .padding(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                   
                     Spacer()
+                    
+                    //IMPLEMENT LATER W FLIGHTS ADDED
+                    Button {
+                        
+                    } label: {
+                        Text("+ Add flight")
+                            .font(Constants.mediumFont)
+                    }
+                   
                     EditButton()
                         .font(Constants.mediumFont)
                         .padding(20)
                 }
                 List {
-                    ForEach(events) { event in
-                        Text(event.name)
+                    ForEach(events.eventList.sorted(by: {$0.date < $1.date})) { event in
+                        HStack {
+                            Text(event.name)
+                            Spacer()
+                            Text(event.date, formatter: ItineraryView.formatter)
+                        }
+                        
                     }
                     .onDelete(perform: deleteEvent)
                     .onMove(perform: moveEvent)
@@ -51,19 +95,16 @@ struct ItineraryView: View {
             }
             .padding()
             .navigationBarTitle("Itinerary")
-        }
+       // }
         .sheet(isPresented: $showSheet) {
-       EventView(event: Event(), addEvent: { event in
-            self.events.append(event)
-            self.showSheet.toggle()
-            })
+            EventView(event: .constant(Event()), showSheet: $showSheet, currentTrip: $currentTrip, addEvent: self.addEvent)
         }
     }
 }
 
 struct ItineraryView_Previews: PreviewProvider {
     static var previews: some View {
-        ItineraryView()
-            .environmentObject(Event())
+        ItineraryView(currentTrip: Binding.constant(Trip()))
+            .environmentObject(Events())
     }
 }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TripDetailView: View {
-    
+    @EnvironmentObject var allTrips: Trips
+    @Binding var isSheetPresented: Bool
     @State var trip = Trip()
-    var addTrip: (Trip) -> Void
     @State private var startDate = Date()
     @State private var endDate = Date()
     @State private var selectionState: SelectionState? = nil
-    @State private var isSheetPresented = false
+    var addTrip: (Trip) -> Void
     
     enum SelectionState: Identifiable {
         case startDate, endDate
@@ -26,6 +26,11 @@ struct TripDetailView: View {
             }
         }
     }
+    
+//    func addTrip() {
+//        allTrips.tripList.append(trip)
+//        isSheetPresented = false
+//    }
     
     func formattedDate(date: Date) -> String {
         let formatter = DateFormatter()
@@ -55,7 +60,7 @@ struct TripDetailView: View {
                 }.padding()
                 Spacer()
             }
-            DatePicker("", selection: selectedDate, displayedComponents: .date)
+            DatePicker("", selection: selectedDate, in: (isStartDate ? Date()... : startDate...) , displayedComponents: [.date])
                 .datePickerStyle(.graphical)
                 .padding()
         }
@@ -94,6 +99,7 @@ struct TripDetailView: View {
             Spacer()
             Button {
                 addTrip(trip)
+                isSheetPresented = false
             } label: {
                 Text("Add Trip")
             }.padding()
@@ -105,6 +111,7 @@ struct TripDetailView: View {
 
 struct TripDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TripDetailView(trip: Trip(), addTrip: {_ in })
+        TripDetailView(isSheetPresented: .constant(false), trip: Trip(), addTrip: {_ in})
+            .environmentObject(Trips())
     }
 }

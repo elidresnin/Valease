@@ -6,27 +6,47 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct PackingView: View {
-    
+    @EnvironmentObject var items : Items
+    @Binding var currentTrip : Trip
     @State var showSheet = false
-    @State var items: [Item] = []
+    
+    func saveItem(name: String, quantity: String, id: UUID) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let tid = currentTrip.id
+        
+        let itemObject = [
+            "name" : name,
+            "quantity" : quantity,
+            "id" : id.uuidString
+        ] as [String: Any]
+        
+        let databaseRef = Database.database().reference().child("users/\(uid)/trips/\(tid)/items/\(id)")
+        
+        databaseRef.setValue(itemObject)
+    }
     
     func addItem(item: Item) {
-        items.append(item)
+        items.itemList.append(item)
         showSheet.toggle()
+        saveItem(name: item.name, quantity: item.quantity, id: item.id)
     }
     
     func deleteItem(at indexSet: IndexSet) {
-            items.remove(atOffsets: indexSet)
+        items.itemList.remove(atOffsets: indexSet)
     }
     
     func moveItem(from source: IndexSet, to destination: Int) {
-            items.move(fromOffsets: source, toOffset: destination)
+        items.itemList.move(fromOffsets: source, toOffset: destination)
     }
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             VStack {
                 HStack {
                     Button(action: {
@@ -43,7 +63,7 @@ struct PackingView: View {
                         .padding(20)
                 }
                 List {
-                    ForEach(items) { item in
+                    ForEach(items.itemList) { item in
                         NavigationLink(destination: ItemDetailView(item: item)) {
                             Text(item.name)
                         }
@@ -54,19 +74,18 @@ struct PackingView: View {
             }
             .padding()
             .navigationBarTitle("Packing List")
-        }
+        //}
         .sheet(isPresented: $showSheet) {
-        ItemView(item: Item(), addItem: { item in
-            self.items.append(item)
-            self.showSheet.toggle()
-            })
+            ItemView(item: Item(), addItem: { item in
+                self.addItem(item: item)
+            }, showSheet: $showSheet, currentTrip: $currentTrip)
         }
     }
 }
 
 struct PackingView_Previews: PreviewProvider {
     static var previews: some View {
-        PackingView()
-            .environmentObject(Item())
+        PackingView(currentTrip: Binding.constant(Trip()))
+            .environmentObject(Items())
     }
 }

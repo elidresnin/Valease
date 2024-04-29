@@ -9,6 +9,6 @@ import SwiftUI
 
 class Trips : ObservableObject {
     @Published var tripList: [Trip] = [
-        Trip()
+        Trip(name: "Default", location: "Miami, Florida")
     ]
 }

@@ -8,12 +8,13 @@
 import SwiftUI
 
 class Item: Identifiable, ObservableObject {
-    @Published var name: String
-    @Published var quantity: String
-    @Published var setReminder: Bool
-    @Published var selectedReminder: String
-    @Published var checked: Bool
-    @Published var selectedReminderIndex: Int
+    var name: String
+    var quantity: String
+    var setReminder: Bool
+    var selectedReminder: String
+    var checked: Bool
+    var selectedReminderIndex: Int
+    let id = UUID()
     
     static let alerts = ["None", "1 hr before trip", "2 hr before trip", "12 hr before trip", "1 day before trip"]
     
@@ -24,6 +25,9 @@ class Item: Identifiable, ObservableObject {
         self.selectedReminder = selectedReminder
         self.checked = checked
         self.selectedReminderIndex = selectedReminderIndex
+        
     }
+    
+    
     
 }

@@ -7,17 +7,25 @@
 
 import SwiftUI
 
+
 class Event: Identifiable, ObservableObject {
-    @Published var name: String
-    @Published var location: String
-    @Published var date: String
-    @Published var time: String
+    var name: String
+    var location: String
+    var date: Date
+    var time: String
+    let id = UUID()
     
-    init(name: String = "", location: String = "", date: String = "", time: String = "") {
+    init(name: String = "", location: String = "", date: Date = Date(), time: String = "") {
         self.name = name
         self.location = location
         self.date = date
         self.time = time
     }
     
+//    func make_dictionary(){
+//        
+//        let stuff :Dictionary = ["name": name, "location": location, "date": date.toString()]
+//        return  [id:[stuff]]
+//    }
+//    
 }

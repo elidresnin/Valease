@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct ItemView: View {
-    
+    @EnvironmentObject var items: Items
     @ObservedObject var item: Item
     var addItem: (Item) -> Void
+    @Binding var showSheet: Bool
+    @Binding var currentTrip : Trip
     
     var body: some View {
         VStack {
@@ -45,15 +51,22 @@ struct ItemView: View {
             Spacer()
             Button {
                 addItem(item)
+                showSheet = false
             } label: {
                 Text("Add Item")
             }.padding()
+                .onSubmit {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+                    Database.database().reference().child("users/\(uid)/trips/\(currentTrip.id)/items/\(item.id)/name").setValue(item.name)
+                    Database.database().reference().child("users/\(uid)/\(currentTrip.id)/items/\(item.id)/quantity").setValue(item.quantity)
+                }
         }
     }
     
     struct ItemView_Previews: PreviewProvider {
         static var previews: some View {
-            ItemView(item: Item(), addItem: {_ in})
+            ItemView(item: Item(), addItem: {_ in}, showSheet: .constant(false), currentTrip: Binding.constant(Trip()))
+                .environmentObject(Items())
         }
     }
 }

@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 struct EventView: View {
-    @ObservedObject var event: Event
-    var addEvent: (Event) -> Void
-    //let alerts = ["None", "1 hr before trip", "2 hr before trip", "12 hr before trip", "1 day before trip"]
-    // @State private var selectedReminder = 0
+    @EnvironmentObject var events: Events
+    @Binding var event: Event
+    @Binding var showSheet: Bool
+    @State private var isShowingPicker = false
+    @Binding var currentTrip : Trip
+    var addEvent: (Event, Date) -> Void
+    
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("yyMMddhhmm")
+        return formatter
+    }()
     
     var body: some View {
         VStack {
@@ -25,40 +37,55 @@ struct EventView: View {
                 .padding(20)
             TextField("Location", text: $event.location)
                 .padding(20)
-            TextField("Date", text: $event.date)
-                .padding(20)
-            TextField("Time", text: $event.time)
-                .padding(20)
-            //            HStack {
-            //                Toggle("Set Reminder", isOn: $event.setReminder)
-            //                    .padding(20)
-            //            }
-            //            if item.setReminder {
-            //                HStack {
-            //                    Text("Alert")
-            //                        .padding(20)
-            //                    Spacer()
-            //                    Picker("Alert", selection: $selectedReminder, content: {
-            //                        ForEach(0..<alerts.count) { index in
-            //                            Text(alerts[index])
-            //                        }
-            //                    })
-            //                    .pickerStyle(MenuPickerStyle())
-            //                    .padding(20)
-            //                }
-            //            }
+            Button(action: {
+                self.isShowingPicker.toggle()
+            }) {
+                Text("Date: \(event.date, formatter: Self.formatter)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(20)
+            }
+            .sheet(isPresented: $isShowingPicker) {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.isShowingPicker = false
+                        }) {
+                            Text("Cancel")
+                        }.frame(maxWidth: .infinity, alignment: .leading)
+                        Button(action: {
+                            self.isShowingPicker = false
+                        }) {
+                        Text("Done")
+                        }.frame(maxWidth: .infinity, alignment: .trailing)
+                        Spacer()
+                    }
+                    .padding()
+                    DatePicker("", selection: $event.date, in: Date()..., displayedComponents: [.hourAndMinute, .date])
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .padding()
+                }
+            }
             Spacer()
             Button {
-                addEvent(event)
+                addEvent(event, event.date)
+                self.showSheet = false
             } label: {
                 Text("Add event")
             }.padding()
+                .onSubmit {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+                    Database.database().reference().child("users/\(uid)/\(currentTrip.id)/events/\(event.id)/name").setValue(event.name)
+                    Database.database().reference().child("users/\(uid)/\(currentTrip.id)/events/\(event.id)/location").setValue(event.location)
+                }
         }
     }
     
     struct EventView_Previews: PreviewProvider {
+            
         static var previews: some View {
-            EventView(event: Event(), addEvent: {_ in})
+            EventView(event: .constant(Event()), showSheet: .constant(true), currentTrip: Binding.constant(Trip()), addEvent: { _, _ in })
+                .environmentObject(Events())
         }
     }
 }

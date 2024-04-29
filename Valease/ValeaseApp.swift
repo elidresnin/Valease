@@ -27,14 +27,24 @@ struct ValeaseApp: App {
     
     @StateObject var user: User = User()
     @StateObject var trips: Trips = Trips()
+
     @StateObject var flights: FlightData = FlightData()
+
+    @StateObject var items: Items = Items()
+    @StateObject var events: Events = Events()
+
     
     var body: some Scene {
         WindowGroup {
             FlightInputView()
                 .environmentObject(user)
                 .environmentObject(trips)
+
                 .environmentObject(flights)
+
+                .environmentObject(items)
+                .environmentObject(events)
+
         }
     }
 }
