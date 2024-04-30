@@ -6,14 +6,26 @@
 //
 
 import SwiftUI
-
-
-
+import FirebaseAuth
+import Firebase
+import FirebaseStorage
+import FirebaseDatabase
 
 struct FlightDetailView: View {
     @EnvironmentObject var flights: FlightData
+    @EnvironmentObject var events : Events
     @State var flight: Flight
+    
+    
     var body: some View {
+        var flightData = ["airline" : flight.airlineName,
+                          "flight number" : String(flight.flightNumber),
+                          "price" : String(flight.price),
+                          "link" : flight.deepLink,
+                          "departure" : flight.departure,
+                          "arrival" : flight.arrival
+        ]
+        
         HStack{
             VStack{
                 Spacer()
@@ -41,8 +53,19 @@ struct FlightDetailView: View {
                 Spacer()
                 
                 
+                
                 Button {
                     
+                    let dateFormatter = ISO8601DateFormatter()
+                    dateFormatter.formatOptions = [.withFullDate] // Added format options
+                    let leaveDate = dateFormatter.date(from: flight.departure) ?? Date.now
+                    
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+                    Database.database().reference().child("users/\(uid)/flightData/\(flight.id)").setValue(flightData)
+                    
+                    let newFlight = Event(name: flight.airlineName, location: String(flight.flightNumber), date: leaveDate, time: String(flight.price))
+                    
+                    events.eventList.append(newFlight)
                     
                     
                 } label: {
@@ -65,5 +88,6 @@ struct FlightDetailView_Previews: PreviewProvider {
     static var previews: some View {
         FlightDetailView(flight: Flight())
             .environmentObject(FlightData())
+            .environmentObject(Events())
     }
 }

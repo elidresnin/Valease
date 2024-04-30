@@ -20,4 +20,5 @@ struct Flight: Identifiable {
     var arrivalDate: Date? 
     var id = UUID()
 
+    
 }

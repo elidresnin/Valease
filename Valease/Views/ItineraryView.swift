@@ -90,6 +90,9 @@ struct ItineraryView: View {
                     }
                     .onDelete(perform: deleteEvent)
                     .onMove(perform: moveEvent)
+                    
+                    
+                    
                 }.listStyle(PlainListStyle())
             }
             .padding()
