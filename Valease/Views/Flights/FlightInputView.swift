@@ -44,14 +44,12 @@ struct FlightInputView: View {
                 .padding()
                 Spacer()
                 if (flights.fly_from != "" && flights.fly_to != ""){
-                    NavigationLink {
-                        FlightView()
-                            .task {
-                                await flights.loadData()
-                               
-                            }
-                            
-                    } label: {
+                    
+                    NavigationLink(destination: FlightView()
+                        .task {
+                            await flights.loadData()
+                        }
+                    ) {
                         Text("Search")
                             .font(Constants.mediumFont)
                             .foregroundColor(Color.textColor)
@@ -60,13 +58,14 @@ struct FlightInputView: View {
                             .background(Color.valeaseTeal)
                             .cornerRadius(20)
                     }
+                    
                 } else {
                     
                 }
                 
                 
             }
-        }
+       }
     }
 }
 
