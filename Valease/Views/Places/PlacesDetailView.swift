@@ -14,11 +14,53 @@ struct PlacesDetailView: View {
     
     var body: some View {
         VStack {
-            Map(coordinateRegion: $place.region)
-                .ignoresSafeArea()
+            AsyncImage(
+                url: URL(string: "https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photo_reference=\(place.photo)&key=AIzaSyDNMYZ6l67iAy_HCSjAAl6Ljrj1oVLWseY"),
+                content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: UIScreen.main.bounds.height/2)
+                        .ignoresSafeArea()
+                        
+                },
+                placeholder: {
+                    ProgressView()
+                        .frame(height: UIScreen.main.bounds.height/2)
+                    
+                }
+            )
             Spacer()
+            Text(place.name)
+                .font(Constants.mediumFont)
+                .bold()
+                .multilineTextAlignment(.center)
+                .padding()
+            Text(place.address)
+                .font(Constants.mediumFont)
+                .multilineTextAlignment(.center)
+                .padding()
+            Text(place.business_status)
+                .multilineTextAlignment(.center)
+                .padding()
             Spacer()
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            if let _ = place.price_level{
+                Text("Price Level: \(String(place.price_level ?? 0))/4")
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
+                
+            Spacer()
+            HStack{
+                ForEach(0..<Int(place.rating)) {_ in
+                       return Image(systemName: "star.fill")
+                        .foregroundColor(Color.valeaseOrange)
+                    }
+                ForEach(Int(place.rating)..<5) {_ in
+                       return Image(systemName: "star")
+                        .foregroundColor(Color.valeaseOrange)
+                    }
+            }
+            
             Spacer()
         }
     }

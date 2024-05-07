@@ -17,6 +17,7 @@ struct Results: Codable {
     var business_status: String = ""
     var formatted_address: String = ""
     var name: String = ""
+    var photos: [Photos]
     var price_level: Int?
     var rating: Double = 0.0
     var types: [String] = []
@@ -32,6 +33,10 @@ struct Location: Codable {
     var lng: Double = 0.0
 }
 
+struct Photos: Codable {
+    var photo_reference: String = ""
+}
+
 class PlaceData: ObservableObject{
     
     @Published var placesResponse = PlacesResponse()
@@ -40,7 +45,7 @@ class PlaceData: ObservableObject{
     @Published var query: String = ""
     @Published var places: [Place] = [Place()]
     
-    @Published var region: MKCoordinateRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+    @Published var region: MKCoordinateRegion? =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
     let baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
     
     func loadData() async {
@@ -67,11 +72,11 @@ class PlaceData: ObservableObject{
         
         for f in placesResponse.results {
            
-            places.append(Place(business_status: f.business_status, address: f.formatted_address, name: f.name,  price_level: f.price_level, rating: f.rating, types: f.types, location: (f.geometry.location.lat, f.geometry.location.lng), region: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: f.geometry.location.lat, longitude: f.geometry.location.lng), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))))
+            places.append(Place(business_status: f.business_status, address: f.formatted_address, name: f.name,  price_level: f.price_level, rating: f.rating, types: f.types, location: (f.geometry.location.lat, f.geometry.location.lng), region: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: f.geometry.location.lat, longitude: f.geometry.location.lng), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)), photo: f.photos[0].photo_reference))
         }
         places.sort(by: {$0.rating > $1.rating})
         
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: avgLat(), longitude: avgLng()), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: avgLat(), longitude: avgLng()), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     }
     
     func avgLat() -> Double {
@@ -93,16 +98,17 @@ class PlaceData: ObservableObject{
 }
 
 struct Place: Identifiable {
-    var business_status: String = ""
+    var business_status: String = "closed"
     var address: String = "101 W Levering Mill Rd, Bala Cywnyd PA 19004"
     var name: String = "Cynwyd Elementry School"
-    var price_level: Int?
-    var rating: Double = 0.0
+    var price_level: Int? = 0
+    var rating: Double = 4.0
     var types: [String] = []
     var location: (Double, Double) = (0.0, 0.0)
     var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.75773, longitude: -73.985708), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: location.0, longitude: location.1)
         }
+    var photo: String =  "AUGGfZl2YOQM_kOCNB6N-RN3M8BYuoD9TYXY4p7z5sH-sQ8ExgA6n9JI1_KVvIgPb4Tx-1IIxApN-fovPXiw5ZcmbaIrjqyWGfaLDsWV8prrxClWrlQhZWbhfOxUiXUTEzCBcOKj9TotBk9vgm54f7HCaHwK6YVK6yXCoMaMSiG2pI9AxjXB"
     var id = UUID()
 }
