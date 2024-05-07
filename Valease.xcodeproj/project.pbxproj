@@ -31,6 +31,7 @@
 		A269F4992BA9EC6300E104EA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269F4982BA9EC6300E104EA /* HomeView.swift */; };
 		A269F49B2BA9EF7400E104EA /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269F49A2BA9EF7400E104EA /* Trip.swift */; };
 		A269F49D2BA9F00000E104EA /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = A269F49C2BA9F00000E104EA /* Trips.swift */; };
+		D09FD8592BEA540A00A21002 /* PlacesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09FD8582BEA540A00A21002 /* PlacesDetailView.swift */; };
 		D0B9723D2B9B8127004BC83A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */; };
 		D0C9E8D22BACB04200BD23AE /* FlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8D12BACB04200BD23AE /* FlightView.swift */; };
 		D0C9E8D52BACB08D00BD23AE /* FetchFlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C9E8D42BACB08D00BD23AE /* FetchFlightData.swift */; };
@@ -69,6 +70,7 @@
 		A269F49A2BA9EF7400E104EA /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		A269F49C2BA9F00000E104EA /* Trips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
 		A82FD003627860213F8A3ADF /* Pods-Valease.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Valease.release.xcconfig"; path = "Target Support Files/Pods-Valease/Pods-Valease.release.xcconfig"; sourceTree = "<group>"; };
+		D09FD8582BEA540A00A21002 /* PlacesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesDetailView.swift; sourceTree = "<group>"; };
 		D0B9723C2B9B8127004BC83A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0C9E8D12BACB04200BD23AE /* FlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightView.swift; sourceTree = "<group>"; };
 		D0C9E8D42BACB08D00BD23AE /* FetchFlightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchFlightData.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				63BDC2AD2BE9480400BA1DF7 /* PlacesInputView.swift */,
 				63BDC2AF2BE9494A00BA1DF7 /* PlacesView.swift */,
+				D09FD8582BEA540A00A21002 /* PlacesDetailView.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				A23417CC2BAB52E10091CBDB /* EventView.swift in Sources */,
 				63BDC2B02BE9494A00BA1DF7 /* PlacesView.swift in Sources */,
 				D0C9E8DB2BACB8FF00BD23AE /* FlightDetailView.swift in Sources */,
+				D09FD8592BEA540A00A21002 /* PlacesDetailView.swift in Sources */,
 				A26818862BC5B7F6000FF39C /* Items.swift in Sources */,
 				A22C8D212BA20A2700A00FB6 /* User.swift in Sources */,
 				D0DA04322B9B7B27007151B3 /* ContentView.swift in Sources */,

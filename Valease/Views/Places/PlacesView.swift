@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import MapKit
+
 
 
 struct PlacesView: View {
     @EnvironmentObject var places: PlaceData
+   
     var body: some View {
         VStack{
+            Map(coordinateRegion: $places.region,  annotationItems: places.places) { item in
+              
+                    MapMarker(coordinate: item.coordinate, tint: .red)
+                
+            }
+            .ignoresSafeArea()
             Text(places.query)
             List(places.places){ place in
                 NavigationLink (destination: {
@@ -20,6 +29,7 @@ struct PlacesView: View {
                     VStack{
                         Text("\(place.name)")
                         Text("\(place.address)")
+                        Text("\(String(place.rating))")
                         
                         
                     }
@@ -27,8 +37,9 @@ struct PlacesView: View {
                     
                 })
             }
+            
             .task {
-                await places.loadData()
+//                await places.loadData()
                     
                 }
                 

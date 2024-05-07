@@ -26,8 +26,9 @@ struct PlacesInputView: View {
               
                 if (places.query != ""){
                     
-                    NavigationLink(destination: FlightView()
+                    NavigationLink(destination: PlacesView()
                         .task {
+                            places.places.removeAll()
                             await places.loadData()
                         }
                     ) {
@@ -46,7 +47,7 @@ struct PlacesInputView: View {
                 
                 
             }
-       }
+        }.ignoresSafeArea()
     }
 }
 
