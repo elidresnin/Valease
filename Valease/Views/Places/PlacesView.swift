@@ -23,12 +23,12 @@ struct PlacesView: View {
     
     var body: some View {
         VStack{
-            Map(coordinateRegion: .constant(places.region!),showsUserLocation: true, annotationItems: places.places) { item in
+            Map(coordinateRegion: .constant(places.region),showsUserLocation: true, annotationItems: places.places) { item in
                 AnyMapAnnotationProtocol(MapAnnotation(coordinate: item.coordinate) {
                     NavigationLink {
                         PlacesDetailView(place: item)
                     } label: {
-                        Image(systemName: "mappin.circle.fill")
+                        Image(systemName: "mappin")
                                                     .font(.title)
                                                     .foregroundColor(.red)
                     }
@@ -36,27 +36,6 @@ struct PlacesView: View {
                             })
                     }
                 .ignoresSafeArea()
-                
-//                List(places.places){ place in
-//                    NavigationLink (destination:  {
-//                        PlacesDetailView(place: place)
-//                    }, label: {
-//                        VStack{
-//                            Text("\(place.name)")
-//                            Text("\(place.address)")
-//                            Text("\(String(place.rating))")
-//                            
-//                            
-//                        }
-//                        .padding()
-//                        
-//                    })
-//                }
-                
-                .task {
-                    //                await places.loadData()
-                    
-                }
                 
             }
             

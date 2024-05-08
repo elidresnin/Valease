@@ -27,9 +27,8 @@ struct ValeaseApp: App {
     
     @StateObject var user: User = User()
     @StateObject var trips: Trips = Trips()
-
+    @StateObject var places: PlaceData = PlaceData()
     @StateObject var flights: FlightData = FlightData()
-
     @StateObject var items: Items = Items()
     @StateObject var events: Events = Events()
 
@@ -39,11 +38,10 @@ struct ValeaseApp: App {
             ContentView()
                 .environmentObject(user)
                 .environmentObject(trips)
-
                 .environmentObject(flights)
-
                 .environmentObject(items)
                 .environmentObject(events)
+                .environmentObject(places)
 
         }
     }
