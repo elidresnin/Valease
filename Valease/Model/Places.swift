@@ -45,7 +45,7 @@ class PlaceData: ObservableObject{
     @Published var query: String = ""
     @Published var places: [Place] = [Place()]
     
-    @Published var region: MKCoordinateRegion? =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+    @Published var region: MKCoordinateRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
     let baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json"
     
     func loadData() async {
@@ -76,7 +76,9 @@ class PlaceData: ObservableObject{
         }
         places.sort(by: {$0.rating > $1.rating})
         
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: avgLat(), longitude: avgLng()), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        let bounds = calculateRegion()
+        
+        region = MKCoordinateRegion(center: bounds.0, span: bounds.1)
     }
     
     func avgLat() -> Double {
@@ -94,6 +96,48 @@ class PlaceData: ObservableObject{
         }
         return total/Double(places.count)
     }
+    func calculateRegion(cushionPercentage: Double = 0.1) -> (center: CLLocationCoordinate2D, span: MKCoordinateSpan) {
+            guard !places.isEmpty else {
+                // If places array is empty, provide a default region or make an assumption
+                let defaultRegionCenter = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+                let defaultRegionSpan = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+                return (defaultRegionCenter, defaultRegionSpan)
+            }
+            
+            // Calculate bounding box with cushion
+            let boundingBox = { () -> (minLat: Double, maxLat: Double, minLng: Double, maxLng: Double) in
+                var minLat = places[0].location.0
+                var maxLat = places[0].location.0
+                var minLng = places[0].location.1
+                var maxLng = places[0].location.1
+                
+                for place in places {
+                    let lat = place.location.0
+                    let lng = place.location.1
+                    minLat = min(minLat, lat)
+                    maxLat = max(maxLat, lat)
+                    minLng = min(minLng, lng)
+                    maxLng = max(maxLng, lng)
+                }
+                
+                let latDelta = maxLat - minLat
+                let lngDelta = maxLng - minLng
+                
+                let cushionLat = latDelta * cushionPercentage
+                let cushionLng = lngDelta * cushionPercentage
+                
+                return (minLat - cushionLat, maxLat + cushionLat, minLng - cushionLng, maxLng + cushionLng)
+            }()
+            
+            let centerLat = (boundingBox.minLat + boundingBox.maxLat) / 2.0
+            let centerLng = (boundingBox.minLng + boundingBox.maxLng) / 2.0
+            let center = CLLocationCoordinate2D(latitude: centerLat, longitude: centerLng)
+            
+            let span = MKCoordinateSpan(latitudeDelta: boundingBox.maxLat - boundingBox.minLat,
+                                        longitudeDelta: boundingBox.maxLng - boundingBox.minLng)
+            
+            return (center, span)
+        }
    
 }
 
