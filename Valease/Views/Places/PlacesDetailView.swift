@@ -65,7 +65,7 @@ struct PlacesDetailView: View {
                     }
                 }
                 
-                DatePicker("Select a date", selection: $place.date, in: Date()..., displayedComponents: [.hourAndMinute, .date])
+                DatePicker("Select a date:", selection: $place.date, in: Date()..., displayedComponents: [.hourAndMinute, .date])
                     .padding()
                 
                 
