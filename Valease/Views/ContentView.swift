@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ViewState{
-    case home, account, flights
+    case home, account, flights, places
 }
 
 struct ContentView: View {
@@ -23,8 +23,10 @@ struct ContentView: View {
                     HomeView()
                 } else if viewState == .account{
                     AccountView()
-                } else{
+                } else if viewState == .flights{
                     FlightInputView()
+                } else {
+                    PlacesInputView()
                 }
                 HStack{
                     Button {
@@ -41,7 +43,7 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
-                        
+                        viewState = .places
                     } label: {
                         VStack{
                             Image(systemName: "map")
@@ -74,9 +76,9 @@ struct ContentView: View {
                         }
                     }
                 }
-                .padding([.leading, .trailing], 40)
-                .padding([.top], 35)
-                .padding([.bottom], -25)
+//                .padding([.leading, .trailing], 40)
+//                .padding([.top], 35)
+//                .padding([.bottom], -25)
             } else{
                 SignupView()
             }

@@ -155,4 +155,5 @@ struct Place: Identifiable {
         }
     var photo: String =  "AUGGfZl2YOQM_kOCNB6N-RN3M8BYuoD9TYXY4p7z5sH-sQ8ExgA6n9JI1_KVvIgPb4Tx-1IIxApN-fovPXiw5ZcmbaIrjqyWGfaLDsWV8prrxClWrlQhZWbhfOxUiXUTEzCBcOKj9TotBk9vgm54f7HCaHwK6YVK6yXCoMaMSiG2pI9AxjXB"
     var id = UUID()
+    var date: Date = Date()
 }
