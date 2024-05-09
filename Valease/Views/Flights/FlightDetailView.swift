@@ -15,6 +15,7 @@ struct FlightDetailView: View {
     @EnvironmentObject var flights: FlightData
     @EnvironmentObject var events : Events
     @State var flight: Flight
+    @Environment(\.openURL) var openLink
     
     
     var body: some View {
@@ -66,6 +67,8 @@ struct FlightDetailView: View {
                     let newFlight = Event(name: flight.airlineName, location: String(flight.flightNumber), date: leaveDate, time: String(flight.price))
                     
                     events.eventList.append(newFlight)
+                    
+                    openLink((URL(string: flight.deepLink) ?? URL(string: "google.com")!))
                     
                     
                 } label: {

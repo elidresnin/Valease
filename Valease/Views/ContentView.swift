@@ -76,15 +76,16 @@ struct ContentView: View {
                         }
                     }
                 }
-//                .padding([.leading, .trailing], 40)
-//                .padding([.top], 35)
+                .padding([.leading, .trailing], 40)
+                .padding([.top], 20)
 //                .padding([.bottom], -25)
             } else{
                 SignupView()
             }
             
         }
-        .padding()
+//        .padding()
+        
     }
 }
 
