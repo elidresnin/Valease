@@ -25,7 +25,7 @@ class Item: Identifiable, ObservableObject {
         self.selectedReminder = selectedReminder
         self.checked = checked
         self.selectedReminderIndex = selectedReminderIndex
-        
+         
     }
     
     

@@ -49,7 +49,7 @@ struct ItemView: View {
                 }
             }
             Spacer()
-            Button {
+            Button { 
                 addItem(item)
                 showSheet = false
             } label: {
