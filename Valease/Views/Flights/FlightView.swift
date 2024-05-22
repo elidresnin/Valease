@@ -13,6 +13,7 @@ extension Data: Identifiable {
 
 struct FlightView: View {
     @EnvironmentObject var flightsResult: FlightData
+    @Binding var currentTrip: Trip
     
     var body: some View {
         //NavigationView{
@@ -20,7 +21,7 @@ struct FlightView: View {
             Text(flightsResult.fly_to)
             List(flightsResult.results){ flight in
                 NavigationLink (destination: {
-                    FlightDetailView(flight: flight)
+                    FlightDetailView(currentTrip:  $currentTrip, flight: flight)
                 }, label: {
                     VStack{
                         HStack{
@@ -72,7 +73,7 @@ struct FlightView: View {
 }
 struct FlightView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightView()
+        FlightView(currentTrip: Binding.constant(Trip()))
             .environmentObject(FlightData())
         
     }

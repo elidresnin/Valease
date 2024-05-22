@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlacesInputView: View {
     @EnvironmentObject var places: PlaceData
+    @Binding var currentTrip: Trip
     var body: some View {
         NavigationView{
             VStack{
@@ -26,7 +27,7 @@ struct PlacesInputView: View {
               
                 if (places.query != ""){
                     
-                    NavigationLink(destination: PlacesView()
+                    NavigationLink(destination: PlacesView(currentTrip: $currentTrip)
                         .task {
                             places.places.removeAll()
                             await places.loadData()
@@ -53,7 +54,7 @@ struct PlacesInputView: View {
 
 struct PlacesInputView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacesInputView()
+        PlacesInputView(currentTrip: Binding.constant(Trip()))
             .environmentObject(PlaceData())
     }
 }

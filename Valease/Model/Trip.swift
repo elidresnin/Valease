@@ -11,12 +11,16 @@ struct Trip: Identifiable{
     var name: String
     var location: String
     var dates: Date
+    var events : Events
+    var items : Items
     let id = UUID()
     
-    init(name: String = "", location: String = "", dates: Date = Date()) {
+    init(name: String = "", location: String = "", dates: Date = Date(), events: Events = Events(), items : Items = Items()) {
         self.name = name
         self.location = location
         self.dates = dates
+        self.events = events
+        self.items = items
     }
     
 //    func make_dictionary(){

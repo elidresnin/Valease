@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TripView: View {
     @Binding var currentTrip: Trip
+    @EnvironmentObject var events : Events
     
     var body: some View {
         //NavigationView{
@@ -35,6 +36,7 @@ struct TripView: View {
                 
                 NavigationLink{
                     ItineraryView(currentTrip: $currentTrip)
+//                    currentTrip.events.eventList.append(contentsOf: events)
                 } label: {
                     VStack{
                         HStack {
@@ -52,6 +54,9 @@ struct TripView: View {
                 }
             }.navigationTitle(currentTrip.name)
                 .padding()
+                .task {
+                    currentTrip.events.eventList = currentTrip.events.eventList + events.eventList
+                }
         //}
 
     }
@@ -61,5 +66,6 @@ struct TripView_Previews: PreviewProvider {
     static var previews: some View {
         TripView(currentTrip: Binding.constant(Trip()))
             .environmentObject(Trips())
+            .environmentObject(Events())
     }
 }

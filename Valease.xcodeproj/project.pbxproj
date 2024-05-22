@@ -147,8 +147,8 @@
 				A269F49A2BA9EF7400E104EA /* Trip.swift */,
 				A269F49C2BA9F00000E104EA /* Trips.swift */,
 				A23417C92BAB51D20091CBDB /* Event.swift */,
-				A26818852BC5B7F6000FF39C /* Items.swift */,
 				A26818872BC5B7FF000FF39C /* Events.swift */,
+				A26818852BC5B7F6000FF39C /* Items.swift */,
 				63BDC2AA2BE9477A00BA1DF7 /* Places.swift */,
 			);
 			path = Model;

@@ -20,13 +20,14 @@ struct AnyMapAnnotationProtocol: MapAnnotationProtocol {
 }
 struct PlacesView: View {
     @EnvironmentObject var places: PlaceData
+    @Binding var currentTrip: Trip
     
     var body: some View {
         VStack{
             Map(coordinateRegion: .constant(places.region),showsUserLocation: true, annotationItems: places.places) { item in
                 AnyMapAnnotationProtocol(MapAnnotation(coordinate: item.coordinate) {
                     NavigationLink {
-                        PlacesDetailView(place: item)
+                        PlacesDetailView(place: item, currentTrip: $currentTrip)
                     } label: {
                         Image(systemName: "mappin")
                                                     .font(.title)
@@ -46,7 +47,7 @@ struct PlacesView: View {
     
     struct PlacesView_Previews: PreviewProvider {
         static var previews: some View {
-            PlacesView()
+            PlacesView(currentTrip: Binding.constant(Trip()))
                 .environmentObject(PlaceData())
         }
     }

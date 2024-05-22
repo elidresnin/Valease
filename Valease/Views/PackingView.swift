@@ -32,17 +32,17 @@ struct PackingView: View {
     }
     
     func addItem(item: Item) {
-        items.itemList.append(item)
+        currentTrip.items.itemList.append(item)
         showSheet.toggle()
         saveItem(name: item.name, quantity: item.quantity, id: item.id)
     }
     
     func deleteItem(at indexSet: IndexSet) {
-        items.itemList.remove(atOffsets: indexSet)
+        currentTrip.items.itemList.remove(atOffsets: indexSet)
     }
     
     func moveItem(from source: IndexSet, to destination: Int) {
-        items.itemList.move(fromOffsets: source, toOffset: destination)
+        currentTrip.items.itemList.move(fromOffsets: source, toOffset: destination)
     }
     
     var body: some View {
@@ -63,9 +63,13 @@ struct PackingView: View {
                         .padding(20)
                 }
                 List {
-                    ForEach(items.itemList) { item in
-                        NavigationLink(destination: ItemDetailView(item: item)) {
-                            Text(item.name)
+                    ForEach(currentTrip.items.itemList) { item in
+                        if item.name != "Default" {
+                            NavigationLink(destination: ItemDetailView(item: item)) {
+                                Text(item.name)
+                            }
+                        } else {
+                            
                         }
                     }
                     .onDelete(perform: deleteItem)

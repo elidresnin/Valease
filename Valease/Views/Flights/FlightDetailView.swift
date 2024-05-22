@@ -14,6 +14,7 @@ import FirebaseDatabase
 struct FlightDetailView: View {
     @EnvironmentObject var flights: FlightData
     @EnvironmentObject var events : Events
+    @Binding var currentTrip : Trip
     @State var flight: Flight
     @Environment(\.openURL) var openLink
     
@@ -66,7 +67,7 @@ struct FlightDetailView: View {
                     
                     let newFlight = Event(name: flight.airlineName, location: String(flight.flightNumber), date: leaveDate, time: String(flight.price))
                     
-                    events.eventList.append(newFlight)
+                    currentTrip.events.eventList.append(newFlight)
                     
                     openLink((URL(string: flight.deepLink) ?? URL(string: "google.com")!))
                     
@@ -89,7 +90,7 @@ struct FlightDetailView: View {
 
 struct FlightDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightDetailView(flight: Flight())
+        FlightDetailView(currentTrip: Binding.constant(Trip()), flight: Flight())
             .environmentObject(FlightData())
             .environmentObject(Events())
     }

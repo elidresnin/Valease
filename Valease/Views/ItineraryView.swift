@@ -35,17 +35,17 @@ struct ItineraryView: View {
     
     func addEvent(event: Event, date: Date) {
         let newEvent = Event(name: event.name, location: event.location, date: event.date, time: event.time)
-        events.eventList.append(newEvent)
+        currentTrip.events.eventList.append(newEvent)
         showSheet.toggle()
         saveEvent(name: newEvent.name, location: newEvent.location, id: newEvent.id)
     }
     
     func deleteEvent(at indexSet: IndexSet) {
-        events.eventList.remove(atOffsets: indexSet)
+        currentTrip.events.eventList.remove(atOffsets: indexSet)
     }
     
     func moveEvent(from source: IndexSet, to destination: Int) {
-        events.eventList.move(fromOffsets: source, toOffset: destination)
+        currentTrip.events.eventList.move(fromOffsets: source, toOffset: destination)
     }
     
     static let formatter: DateFormatter = {
@@ -70,7 +70,7 @@ struct ItineraryView: View {
                     Spacer()
                     
                     //IMPLEMENT LATER W FLIGHTS ADDED
-                    NavigationLink(destination: FlightInputView()){
+                    NavigationLink(destination: FlightInputView(currentTrip: $currentTrip)){
                         Text("+ Add flight")
                             .font(Constants.mediumFont)
                     }
@@ -80,11 +80,15 @@ struct ItineraryView: View {
                         .padding(20)
                 }
                 List {
-                    ForEach(events.eventList.sorted(by: {$0.date < $1.date})) { event in
-                        HStack {
-                            Text(event.name)
-                            Spacer()
-                            Text(event.date, formatter: ItineraryView.formatter)
+                    ForEach(currentTrip.events.eventList.sorted(by: {$0.date < $1.date})) { event in
+                        if event.name != "Default" {
+                            HStack {
+                                Text(event.name)
+                                Spacer()
+                                Text(event.date, formatter: ItineraryView.formatter)
+                            }
+                        } else {
+                            
                         }
                         
                     }

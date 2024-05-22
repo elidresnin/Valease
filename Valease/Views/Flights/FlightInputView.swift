@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FlightInputView: View {
     @EnvironmentObject var flights: FlightData
+    @Binding var currentTrip: Trip
     @State var to: String = ""
     @State var from: String = ""
     @State var date: String = ""
@@ -47,7 +48,7 @@ struct FlightInputView: View {
                 Spacer()
                 if (flights.fly_from != "" && flights.fly_to != ""){
                     
-                    NavigationLink(destination: FlightView()
+                    NavigationLink(destination: FlightView(currentTrip: $currentTrip)
                         .task {
                             await flights.loadData()
                         }
@@ -73,7 +74,7 @@ struct FlightInputView: View {
 
 struct FlightInputView_Previews: PreviewProvider {
     static var previews: some View {
-        FlightInputView()
+        FlightInputView(currentTrip: Binding.constant(Trip()))
             .environmentObject(FlightData())
     }
 }

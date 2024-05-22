@@ -12,6 +12,7 @@ struct PlacesDetailView: View {
     @EnvironmentObject var places: PlaceData
     @State var place: Place
     @EnvironmentObject var events : Events
+    @Binding var currentTrip : Trip
     @State private var isShowingPicker = false
     
     var body: some View {
@@ -74,6 +75,7 @@ struct PlacesDetailView: View {
                     let newPlace = Event(name: place.name, location: place.address, date: place.date)
                     
                     events.eventList.append(newPlace)
+                  
                     
                 } label: {
                     Text("Add to itinerary")
@@ -94,7 +96,7 @@ struct PlacesDetailView: View {
 
 struct PlacesDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacesDetailView(place: Place())
+        PlacesDetailView(place: Place(), currentTrip: Binding.constant(Trip()))
             .environmentObject(PlaceData())
             .environmentObject(Events())
     }

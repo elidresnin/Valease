@@ -14,6 +14,7 @@ enum ViewState{
 struct ContentView: View {
     @EnvironmentObject var user: User
     @EnvironmentObject var trips: Trips
+    @Binding var currentTrip: Trip
     @State var viewState: ViewState = .home
     
     var body: some View {
@@ -24,9 +25,9 @@ struct ContentView: View {
                 } else if viewState == .account{
                     AccountView()
                 } else if viewState == .flights{
-                    FlightInputView()
+                    FlightInputView(currentTrip: $currentTrip)
                 } else {
-                    PlacesInputView()
+                    PlacesInputView(currentTrip: $currentTrip)
                 }
                 HStack{
                     Button {
@@ -91,7 +92,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(currentTrip: Binding.constant(Trip()))
             .environmentObject(User())
             .environmentObject(Trips())
             .environmentObject(Items())
