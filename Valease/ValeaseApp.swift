@@ -34,6 +34,7 @@ struct ValeaseApp: App {
 
     
     var body: some Scene {
+        
         WindowGroup {
             ContentView(currentTrip: Binding.constant(Trip()))
                 .environmentObject(user)

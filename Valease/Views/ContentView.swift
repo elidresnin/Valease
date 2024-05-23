@@ -16,6 +16,10 @@ struct ContentView: View {
     @EnvironmentObject var trips: Trips
     @Binding var currentTrip: Trip
     @State var viewState: ViewState = .home
+    @State var homeIcon = "house"
+    @State var mapIcon = "map"
+    @State var planeIcon = "paperplane"
+    @State var accountIcon = "person"
     
     var body: some View {
         VStack {
@@ -26,15 +30,20 @@ struct ContentView: View {
                     AccountView()
                 } else if viewState == .flights{
                     FlightInputView(currentTrip: $currentTrip)
-                } else {
+                } else if viewState == .places{
                     PlacesInputView(currentTrip: $currentTrip)
                 }
                 HStack{
                     Button {
+                        homeIcon = "house.fill"
+                        mapIcon = "map"
+                        planeIcon = "paperplane"
+                        accountIcon = "person"
                         viewState = .home
+                  
                     } label: {
                         VStack{
-                            Image(systemName: "house")
+                            Image(systemName: homeIcon)
                                 .font(.largeTitle)
                                 .foregroundColor(Color.valeaseGreen)
                             
@@ -44,10 +53,16 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
+                        homeIcon = "house"
+                        mapIcon = "map.fill"
+                        planeIcon = "paperplane"
+                        accountIcon = "person"
                         viewState = .places
+                        
+                        
                     } label: {
                         VStack{
-                            Image(systemName: "map")
+                            Image(systemName: mapIcon)
                                 .font(.largeTitle)
                                 .foregroundColor(Color.valeaseGreen)
                         }
@@ -56,10 +71,15 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
+                        
+                        homeIcon = "house"
+                        mapIcon = "map"
+                        planeIcon = "paperplane.fill"
+                        accountIcon = "person"
                         viewState = .flights
                     } label: {
                         VStack{
-                            Image(systemName: "airplane")
+                            Image(systemName: planeIcon)
                                 .font(.largeTitle)
                                 .foregroundColor(Color.valeaseGreen)
                         }
@@ -68,10 +88,15 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
+                        homeIcon = "house"
+                        mapIcon = "map"
+                        planeIcon = "paperplane"
+                        accountIcon = "person.fill"
                         viewState = .account
+                        
                     } label: {
                         VStack{
-                            Image(systemName: "person")
+                            Image(systemName: accountIcon)
                                 .font(.largeTitle)
                                 .foregroundColor(Color.valeaseGreen)
                         }

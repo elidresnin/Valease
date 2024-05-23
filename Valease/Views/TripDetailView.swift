@@ -21,16 +21,16 @@ struct TripDetailView: View {
         
         var id: Int {
             switch self {
-                case .startDate: return 0
-                case .endDate: return 1
+            case .startDate: return 0
+            case .endDate: return 1
             }
         }
     }
     
-//    func addTrip() {
-//        allTrips.tripList.append(trip)
-//        isSheetPresented = false
-//    }
+    //    func addTrip() {
+    //        allTrips.tripList.append(trip)
+    //        isSheetPresented = false
+    //    }
     
     func formattedDate(date: Date) -> String {
         let formatter = DateFormatter()
@@ -79,30 +79,33 @@ struct TripDetailView: View {
                 .padding(20)
             TextField("Location", text: $trip.location)
                 .padding(20)
-            
-            VStack {
-                HStack {
+            HStack{
+                VStack {
                     Button(action: {
                         selectionState = .startDate
                     }) {
                         Text("Start Date: \(formattedDate(date: startDate))")
-                    }.padding()
-                    Spacer()
+                    }
+                    .padding(.bottom)
+                    
                     Button(action: {
                         selectionState = .endDate
                     }) {
                         Text("End Date: \(formattedDate(date: endDate))")
-                    }.padding()
-                    Spacer()
+                    }
+                   
                 }
+                Spacer()
             }
+            .padding()
             Spacer()
             Button {
                 addTrip(trip)
                 isSheetPresented = false
             } label: {
                 Text("Add Trip")
-            }.padding()
+                    .fontWeight(.bold)
+            }.padding(.bottom, 35)
         }.sheet(item: $selectionState) { state in
             datePickerSheet(selectedDate: state == .startDate ? $startDate : $endDate, isPresented: .constant(true), isStartDate: state == .startDate)
         }

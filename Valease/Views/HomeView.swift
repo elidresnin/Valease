@@ -61,7 +61,7 @@ struct HomeView: View {
                             Text(trip.name)
                                 .padding()
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .border(Color.valeaseTeal, width: 4)
+                              //  .border(Color.valeaseTeal, width: 4)
                         }
                     }
                     .onDelete(perform: deleteTrip)

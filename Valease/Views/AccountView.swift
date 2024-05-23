@@ -38,11 +38,11 @@ struct AccountView: View {
                 .font(Constants.mediumFont)
                 .border(Color.valeaseOrange, width: 4)
                 .padding()
-//                .onSubmit {
-//                    guard let uid = Auth.auth().currentUser?.uid else {return}
-//
-//                    Database.database().reference().child("users/\(uid)/nameData").setValue(user.name)
-//                }
+                .onSubmit {
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
+
+                    Database.database().reference().child("users/\(uid)/nameData").setValue(user.name)
+                }
             Spacer()
             
             Button {

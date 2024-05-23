@@ -78,12 +78,16 @@ struct PlacesDetailView: View {
                   
                     
                 } label: {
-                    Text("Add to itinerary")
-                        .padding()
-                        .background(Color.valeaseTeal)
-                        .cornerRadius(30)
-                    
-                    
+                    HStack{
+                        Image(systemName: "plus.circle")
+                            .foregroundColor(.valeaseGreen)
+                            .fontWeight(.bold)
+                            .font(.system(size: 30))
+                        Text("Add to itinerary")
+                            .font(.system(size: 20))
+                            .foregroundColor(.valeaseGreen)
+                            .fontWeight(.bold)
+                    }
                 }
                 
                 
