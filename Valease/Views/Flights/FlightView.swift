@@ -44,13 +44,8 @@ struct FlightView: View {
                             Spacer()
                         }
                         HStack{
-                            
-                            
-                            //                                Text(flight.departureDate.formatted(date: .numeric, time: .shortened) ?? "err")
-                            //
-                            //
-                            //                                Text(flight.arrivalDate.formatted(date: .numeric, time: .shortened) ?? "err")
-                            Text("\(flight.departure) - \(flight.arrival)")
+                          
+                            Text("\(flight.departureDate?.formatted(date: .numeric, time: .shortened) ?? flight.departure) - \(flight.arrivalDate?.formatted(date: .numeric, time: .shortened) ?? flight.arrival)")
                             Spacer()
                             Text("$\(flight.price)")
                         }

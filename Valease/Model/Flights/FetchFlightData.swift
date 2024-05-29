@@ -80,7 +80,9 @@ class FlightData: ObservableObject {
     
     func parseData() {
         
-        let dateFormatter = ISO8601DateFormatter()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+
         var count = 0
         results.removeAll()
         for f in flightResponse.data {
@@ -88,9 +90,10 @@ class FlightData: ObservableObject {
                 aInfo  = await fetchAirlineInfo(airline: f.airlines.first ?? "err")
                 
             }
-            results.append(Flight(airline: f.airlines.first ?? "err", flightNumber: f.route.first?.flight_no ?? 0, price: f.price, departure: f.route.first?.local_departure ?? "", arrival: f.route.first?.local_arrival ?? "", airlineName: aInfo.0 ?? "Err", logoURL: aInfo.1 ?? "ERr", deepLink: f.deep_link))
+            results.append(Flight(airline: f.airlines.first ?? "err", flightNumber: f.route.first?.flight_no ?? 0, price: f.price, departure: f.route.first?.local_departure ?? "", arrival: f.route.first?.local_arrival ?? "", airlineName: aInfo.0 ?? "Err", logoURL: aInfo.1 ?? "ERr", deepLink: f.deep_link, departureDate: dateFormatter.date(from: f.route.first?.local_departure ?? ""), arrivalDate: dateFormatter.date(from: f.route.first?.local_arrival ?? "")))
             count += 1
         }
+        
         
         
     }

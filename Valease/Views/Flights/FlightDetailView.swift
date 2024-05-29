@@ -48,8 +48,9 @@ struct FlightDetailView: View {
                 Text("\(flight.airline) \(String(flight.flightNumber))")
                 
                 
-                Text("\(flight.departure)")
-                Text("\(flight.arrival)")
+                Text("\(flight.departureDate?.formatted(date: .numeric, time: .shortened) ?? flight.departure)")
+            
+                Text("\(flight.arrivalDate?.formatted(date: .numeric, time: .shortened) ?? flight.arrival)")
                 
                 Text("$\(flight.price)")
                 Spacer()
