@@ -11,6 +11,7 @@ struct ItemDetailView: View {
     
     @ObservedObject var item: Item
     @State private var selectedReminder = 0
+    let alerts = ["None", "1 hr before trip", "2 hr before trip", "12 hr before trip", "1 day before trip"]
     
     var body: some View {
         VStack {
@@ -22,23 +23,23 @@ struct ItemDetailView: View {
             Text("Quantity: \(item.quantity)")
                 .padding(20)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            HStack {
-                Toggle("Set Reminder", isOn: $item.setReminder)
-                    .padding(20)
-            }
-            if item.setReminder {
+//            HStack {
+//                Toggle("Set Reminder", isOn: $item.setReminder)
+//                    .padding(20)
+//            }
+            //if item.setReminder {
                 HStack {
                     Text("Alert")
                         .padding(20)
                     Spacer()
-                    Text(Item.alerts[item.selectedReminderIndex])
+                    Text(alerts[item.selectedReminderIndex])
                         .padding(20)
                 }
-            }
+           // }
             Spacer()
         }
         .onAppear {
-            if !(0..<Item.alerts.count).contains(item.selectedReminderIndex) {
+            if !(0..<alerts.count).contains(item.selectedReminderIndex) {
                 item.selectedReminderIndex = 0
             }
         }

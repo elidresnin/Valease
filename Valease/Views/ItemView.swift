@@ -17,6 +17,9 @@ struct ItemView: View {
     var addItem: (Item) -> Void
     @Binding var showSheet: Bool
     @Binding var currentTrip : Trip
+    @State var reminderSet : Bool = false
+    let alerts = ["None", "1 hr before trip", "2 hr before trip", "12 hr before trip", "1 day before trip"]
+    @State private var selectedReminder  = 0
     
     var body: some View {
         VStack {
@@ -30,26 +33,30 @@ struct ItemView: View {
                 .padding(20)
             TextField("Quantity", text: $item.quantity)
                 .padding(20)
-            HStack {
-                Toggle("Set Reminder", isOn: $item.setReminder)
+            //HStack {
+                Toggle("Set Reminder", isOn: $reminderSet)
                     .padding(20)
-            }
-            if item.setReminder {
+            //}
+           if reminderSet {
+               
                 HStack {
                     Text("Alert")
                         .padding(20)
                     Spacer()
-                    Picker("Alert", selection: $item.selectedReminderIndex) {
-                        ForEach(0..<Item.alerts.count) { index in
-                            Text(Item.alerts[index])
-                        }
+                    Picker("Alert", selection: $selectedReminder) {
+                        ForEach(0..<alerts.count) {i in
+                            Text(alerts[i])
+//                            item.selectedReminderIndex = selectedReminder
+                      }
                     }
-                    .pickerStyle(MenuPickerStyle())
-                    .padding(20)
+//                    Text(item.selectedReminder)
+//                    .pickerStyle(MenuPickerStyle())
+//                    .padding(20)
                 }
             }
             Spacer()
-            Button { 
+            Button {
+                item.selectedReminderIndex = selectedReminder
                 addItem(item)
                 showSheet = false
             } label: {
