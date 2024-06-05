@@ -66,7 +66,7 @@ class FlightData: ObservableObject {
         formatter.dateFormat = "dd/MM/yyyy"
         let url = URL(string: "https://api.tequila.kiwi.com/v2/search?fly_from=\(self.fly_from)&fly_to=\(self.fly_to)&date_from=\(formatter.string(from: date_to))&date_to=\(formatter.string(from: date_to))&max_stopovers=0&curr=USD")!
         var request = URLRequest(url: url)
-        request.setValue("VxAXJ1efWqww-_ihywdKLEsCOcFPSPJj", forHTTPHeaderField: "apikey")
+        request.setValue("", forHTTPHeaderField: "apikey")
         guard let (data, _) = try? await URLSession.shared.data(for: request) else {return print("error at urlsession")}
         guard let decoded = try? JSONDecoder().decode(FlightResponse.self, from: data) else {return print("localizedDescription")}
         flightResponse = decoded
@@ -105,7 +105,7 @@ class FlightData: ObservableObject {
         
         let url = URL(string: "https://api.api-ninjas.com/v1/airlines?iata=\(airline)")!
         var request = URLRequest(url: url)
-        request.setValue("bgxIHx/vAkKSP1sQg/eekQ==6ObiI1tlak89dl8T", forHTTPHeaderField: "X-Api-Key")
+        request.setValue("", forHTTPHeaderField: "X-Api-Key")
 
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
