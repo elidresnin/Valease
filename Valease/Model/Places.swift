@@ -54,7 +54,7 @@ class PlaceData: ObservableObject{
             "query": query,
             "inputtype": "textquery",
             "fields": "formatted_address,name",
-            "key": "AIzaSyDNMYZ6l67iAy_HCSjAAl6Ljrj1oVLWseY"
+            "key": ""
         ]
         var components = URLComponents(string: self.baseURL)!
         components.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
